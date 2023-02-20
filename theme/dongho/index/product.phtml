@@ -1,0 +1,176 @@
+<?php
+$_Product = new Model\Products($data["p"]);
+$a = new Model\Products();
+$Img = $a->getAllImges($_Product->ID);
+?>
+
+<div class="product">
+    <div class="product-header">
+        <div class="row">
+            <div class="product-image col-md-6">
+                <div class="product-image-large">
+                    <div class="product-image-large-item">
+                        <div class="product-image-item">
+                            <img onerror="this.src='/public/no-image.jpg'" id="product-zoom" src='<?php echo $_Product->UrlHinh() ?>' data-zoom-image="<?php echo $_Product->UrlHinh() ?>"/>
+                        </div>
+                    </div>
+                    <div class="product-image-large-item">
+                        <div class="product-image-item">
+                            <img onerror="this.src='/public/no-image.jpg'" id="product-zoom" src='<?php echo $_Product->UrlHinh() ?>' data-zoom-image="<?php echo $_Product->UrlHinh() ?>"/>
+                        </div>
+                    </div>
+                    <div class="product-image-large-item">
+                        <div class="product-image-item">
+                            <img onerror="this.src='/public/no-image.jpg'" id="product-zoom" src='<?php echo $_Product->UrlHinh() ?>' data-zoom-image="<?php echo $_Product->UrlHinh() ?>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-image-thumbnail hidden">
+                    <div class="product-image-thumbnail-item">
+                        <div class="product-image-item">
+                            <img onerror="this.src='/public/no-image.jpg'" id="product-zoom" src='<?php echo $_Product->UrlHinh() ?>' data-zoom-image="<?php echo $_Product->UrlHinh() ?>"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-information col-md-6 col-lg-5">
+                <h2 class="product-name"><?php echo $_Product->nameProduct ?></h2>
+                <div class="product-price">
+                    <ins><?php echo $_Product->Price(); ?></ins>
+                    <?php
+                    if ($_Product->oldPrice > 0) {
+                        ?>
+                        <del><?php echo $_Product->oldPrice(); ?></del>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="product-status">Số Lượng: <span><?php echo $_Product->Number; ?></span></div>
+                <div class="product-status">Tình trạng: <span><?php echo $_Product->TinhTrang(); ?></span></div>
+                <hr>
+                <div class="product-short-description">
+                    <p><?php echo strip_tags($_Product->Summary); ?></p>
+                </div>
+                <div class="product-control">
+                    <form action="/" method="POST" id="product-form">
+                        <?php if ($_Product->Number > 0) {
+                            ?>
+                            <div class="product-group">
+                                <a href="<?php echo $_Product->linkGioHang(); ?>" id="btn-add-to-cart" class="btn-togger-cart product-button">Thêm vào giỏ hàng</a>
+                                <a href="<?php echo $_Product->linkMuaNgay(); ?>" id="btn-buy-now" class="product-button">Mua ngay</a>
+                            </div>
+                        <?php }
+                        ?>
+                        <input type="hidden" name="product-color" value="01">
+                        <input type="hidden" name="product-size" value="M">
+                    </form>
+                </div>
+                <div class="product-list">
+                    <h3>Chia Sẻ</h3>
+                    <div class="fb-like" data-href="<?php echo $_Product->linkProduct(); ?>" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-bottom">
+        <div class="product-description">
+            <h3 class="product-description-header">Chi tiết sản phẩm</h3>
+            <div class="product-description-body">
+                <?php
+                echo $_Product->Content;
+                ?>
+            </div>
+        </div>
+        <div class="product-comment">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=609764426318423&autoLogAppEvents=1" nonce="CHoticla"></script>
+        </div>
+    </div>
+    <div class="product-related hidden">
+        <h2 class="product-related-title">Sản phẩm cùng loại</h2>
+        <div class="product-related-list">
+            <div class="row">
+                <div class="product-item col-sm-6 col-md-3">
+                    <div class="product-item-image">
+                        <figure>
+                            <a href="./product.html">
+                                <img src="./images/product-01.png" alt="Product 01">
+                            </a>
+                        </figure>
+                        <span class="product-item-label">-20%</span>
+                    </div>
+                    <h3 class="product-item-title">
+                        <a href="./product.html">TN0057</a>
+                    </h3>
+                    <div class="product-item-price">
+                        <del>230,000 vnd</del>
+                        <ins>170,000 vnd</ins>
+                    </div>
+                    <div class="product-item-view readmore">
+                        <a href="./product.html">Xem ngay</a>
+                    </div>
+                </div>
+                <div class="product-item col-sm-6 col-md-3">
+                    <div class="product-item-image">
+                        <figure>
+                            <a href="./product.html">
+                                <img src="./images/product-02.png" alt="Product 02">
+                            </a>
+                        </figure>
+                        <span class="product-item-label">-50%</span>
+                    </div>
+                    <h3 class="product-item-title">
+                        <a href="./product.html">TN0057</a>
+                    </h3>
+                    <div class="product-item-price">
+                        <del>230,000 vnd</del>
+                        <ins>170,000 vnd</ins>
+                    </div>
+                    <div class="product-item-view readmore">
+                        <a href="./product.html">Xem ngay</a>
+                    </div>
+                </div>
+                <div class="product-item col-sm-6 col-md-3">
+                    <div class="product-item-image">
+                        <figure>
+                            <a href="./product.html">
+                                <img src="./images/product-03.png" alt="Product 03">
+                            </a>
+                        </figure>
+                        <span class="product-item-label">-30%</span>
+                    </div>
+                    <h3 class="product-item-title">
+                        <a href="./product.html">TN0057</a>
+                    </h3>
+                    <div class="product-item-price">
+                        <del>230,000 vnd</del>
+                        <ins>170,000 vnd</ins>
+                    </div>
+                    <div class="product-item-view readmore">
+                        <a href="./product.html">Xem ngay</a>
+                    </div>
+                </div>
+                <div class="product-item col-sm-6 col-md-3">
+                    <div class="product-item-image">
+                        <figure>
+                            <a href="./product.html">
+                                <img src="./images/product-04.png" alt="Product 04">
+                            </a>
+                        </figure>
+                        <span class="product-item-label">-10%</span>
+                    </div>
+                    <h3 class="product-item-title">
+                        <a href="./product.html">TN0057</a>
+                    </h3>
+                    <div class="product-item-price">
+                        <del>230,000 vnd</del>
+                        <ins>170,000 vnd</ins>
+                    </div>
+                    <div class="product-item-view readmore">
+                        <a href="./product.html">Xem ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

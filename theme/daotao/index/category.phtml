@@ -1,0 +1,82 @@
+<?php
+$view_theme = new theme\home\functionLayout();
+$Category = $data["Category"];
+$cat = new \Model\Category();
+$listCatID = [$Category->catID];
+$cat->AllCategoryByParentID([$Category->catID], $listCatID);
+
+$product = new \Model\Products();
+//var_dump($Category);
+
+$DSProduct = $product->ProductsByCatID($listCatID, 1, 20, $sum);
+?>
+<?php
+$view_theme->categorySlider();
+?>
+<!-- view-product-list-->
+<div id="view-product-list" class="view-product-list">
+    <h2 class="page-heading">
+        <span class="page-heading-title"><?php echo $Category->catName; ?></span>
+    </h2>
+    <ul class="display-product-option">
+        <li class="view-as-grid selected">
+            <span>grid</span>
+        </li>
+        <li class="view-as-list">
+            <span>list</span>
+        </li>
+    </ul>
+    <!-- PRODUCT LIST -->
+    <ul class="row product-list grid">
+        <?php
+        if ($DSProduct)
+            foreach ($DSProduct as $_Poroduct) {
+                ?> 
+                <li class="col-sx-12 col-sm-4">
+                    <?php
+                    $view_theme->product($_Poroduct);
+                    ?>
+                </li>
+                <?php
+            }
+        ?>
+
+    </ul>
+    <!-- ./PRODUCT LIST -->
+</div>
+<!-- ./view-product-list-->
+<div class="sortPagiBar hidden">
+    <div class="bottom-pagination">
+        <nav>
+            <ul class="pagination">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="show-product-item">
+        <select name="">
+            <option value="">Show 18</option>
+            <option value="">Show 20</option>
+            <option value="">Show 50</option>
+            <option value="">Show 100</option>
+        </select>
+    </div>
+    <div class="sort-product">
+        <select>
+            <option value="">Product Name</option>
+            <option value="">Price</option>
+        </select>
+        <div class="sort-product-icon">
+            <i class="fa fa-sort-alpha-asc"></i>
+        </div>
+    </div>
+</div>

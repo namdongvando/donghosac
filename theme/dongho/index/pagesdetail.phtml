@@ -1,0 +1,9 @@
+<?php
+$view_theme = new \theme\home\functionLayout();
+$_Pages = new \Model\pages($data["pages"]);
+$Model_News = new \Model\news();
+$newsByPage = $Model_News->NewsByPagesLimitNumber($_Pages->idPa, 9, FALSE);
+?>
+<div class="" >
+    <?php echo $_Pages->Content ?>
+</div>

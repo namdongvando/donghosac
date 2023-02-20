@@ -1,0 +1,54 @@
+<?php
+$view_theme = $functionLayout;
+
+$Products = new Model\Products();
+$tong = 0;
+$DSProduct = $Products->ProductsAllPT(1, 21, $tong);
+?>
+<div class="category">
+    <div class="products-list">
+        <div class="row">
+            <?php
+            if ($DSProduct)
+                foreach ($DSProduct as $k => $value) {
+                    $_pro = new \Model\Products($value);
+                    ?>
+                    <div class="product-item col-sm-6 col-md-4 product-item wow fadeInUp">
+                        <div class="product-item-image">
+                            <figure>
+                                <a href="<?php echo $_pro->linkProduct() ?>">
+                                    <img src="<?php echo $_pro->UrlHinh() ?>" alt="<?php echo $_pro->nameProduct ?>">
+                                </a>
+                            </figure>
+                            <?php
+                            if ($_pro->oldPrice > 0) {
+                                ?>
+                                <span class="product-item-label"><?php echo $_pro->GiamGia(); ?>%</span>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <h3 class="product-item-title">
+                            <a href="<?php echo $_pro->linkProduct() ?>"><?php echo $_pro->nameProduct ?></a>
+                        </h3>
+                        <div class="product-item-price">
+                            <?php
+                            if ($_pro->oldPrice > 0) {
+                                ?>
+                                <del><?php echo $_pro->oldPrice() ?></del>
+                                <?php
+                            }
+                            ?>
+                            <ins><?php echo $_pro->Price(); ?></ins>
+                        </div>
+                        <div class="product-item-view readmore">
+                            <a href="<?php echo $_pro->linkProduct(); ?>">Xem ngay</a>
+                        </div>
+                    </div>
+                    <?php
+                }
+            ?>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{
+    "require": {
+        "zendframework/zend-db": "^2.11",
+        "namdongvando/rpfbc": "^3.22",
+        "phpmailer/phpmailer": "^6.4"
+    }
+}

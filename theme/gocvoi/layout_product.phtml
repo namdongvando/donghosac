@@ -1,0 +1,53 @@
+<?php
+
+use theme\gocvoi\functionLayout;
+
+$functionLayout = new theme\gocvoi\functionLayout();
+
+
+ob_start();
+?>
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+    </head>
+    <body class="site home">
+        <div id="body-wrapper">
+            <?php
+            $functionLayout->header()
+            ?>
+            <div class="body">
+                <div class="breadcrumb">
+                    <div class="container flex breadcrumb-wrapper">
+                        <h1 class="page-title">Sản phẩm</h1>
+                        <ul class="pathway flex">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><span>Sản phẩm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div class="container">
+                        <div class="row">
+                            <div id="main-content" class="">
+                                <?php
+                                include_once $Content;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php
+            $functionLayout->footer();
+            ?>
+        </div>
+    </body>
+</html>
+<?php
+$functionLayout->DeCodeHTML();
+?>

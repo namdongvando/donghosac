@@ -1,0 +1,15 @@
+<div class="CKFinderFrameWindow" >
+    <div id="ckfinder"></div>
+</div>
+<script type="text/javascript" >
+    try {
+        var config = {};
+        config.width = '100%';
+        config.height = 500;
+        config.language = "vi";
+        var ckfinder = new CKFinder(config);
+        ckfinder.replace('ckfinder');
+    } catch (e) {
+        console.log(e.message);
+    }
+</script>

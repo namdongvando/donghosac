@@ -1,0 +1,11 @@
+<?php
+
+$Model_Pages = new \Model\pages();
+$_Theme = new \theme\home\functionLayout();
+$PagesHome = $Model_Pages->PagesInHome(FALSE);
+foreach ($_Theme->LoadConfig()->displayPosition as $k => $Pa) {
+    $Pages = $Model_Pages->PagesById($Pa->DanhMuc, FALSE);
+    $_Theme->HienThiMau($Pages, $Pa->Mau);
+}
+
+?>

@@ -1,0 +1,102 @@
+<?php
+$Produc = new Model\Products();
+$number = 30;
+$Pages = !empty($_GET["pages"]) ? intval($_GET["pages"]) : 1;
+$Pages = max($Pages, 1);
+$keyword = $_GET["keyword"];
+$DSSP = $Produc->getProductsByName($keyword, $Pages, $number, $sum);
+?>
+<div class="products-best-selling module">
+    <div class="">
+        <h2 class="module-title wow fadeInDown">Tìm kiếm</h2>
+        <div class="">
+            <form action="/timkiem/index/" method="get">
+                <input type="text" value="<?php echo $keyword ?>" name="keyword" placeholder="Tìm kiếm sản phẩm">
+                <button type="submit" ><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="module-content products-promotion-list product-list">
+            <div class="row  ">
+                <?php
+                if ($DSSP) {
+                    foreach ($DSSP as $pro) {
+                        $_pro = new \Model\Products($pro);
+                        ?>
+                        <div class="col-sm-6 col-md-3  product-item wow fadeInUp">
+                            <?php
+                            if ($_pro->isShow == \Model\Products::News) {
+                                ?>
+                                <img class="icon-new" src="/public/news.png" alt=""/>
+                                <?php
+                            }
+                            ?>
+                            <div class="product-item-image">
+                                <figure>
+                                    <a href="<?php echo $_pro->linkProduct() ?>">
+                                        <img class="hinhVuong" src="<?php echo $_pro->UrlHinh() ?>" alt="<?php echo $_pro->nameProduct ?>">
+                                    </a>
+                                    <?php
+                                    if ($_pro->Number == 0) {
+                                        ?>
+                                        <span class="product-out-store">Hết Hàng</span>
+                                        <?php
+                                    }
+                                    ?>
+                                </figure>
+                                <?php
+                                if ($_pro->oldPrice > 0) {
+                                    ?>
+                                    <span class="product-item-label"><?php echo $_pro->GiamGia(); ?>%</span>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                            <h3 class="product-item-title">
+                                <a href="<?php echo $_pro->linkProduct() ?>"><?php echo $_pro->nameProduct ?></a>
+                            </h3>
+                            <div class="product-item-price">
+                                <?php
+                                if ($_pro->oldPrice > 0) {
+                                    ?>
+                                    <del><?php echo $_pro->oldPrice ?></del>
+                                    <?php
+                                }
+                                ?>
+                                <ins><?php echo $_pro->Price(); ?></ins>
+                            </div>
+                            <div class="product-item-view readmore">
+                                <?php
+                                $_pro->btnGioHang();
+                                ?>
+
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "mã sp không đúng hoặc sp không tồn tại ";
+                }
+                ?>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-page" style="background-color: #fff;" >
+    <div >
+        <div class="category-featured fashion">
+            <div class="product-featured clearfix">
+                <div class="row">
+                    <h3 class="text-left" style="padding: 15px;font-size: 18px;" >Kết quả tìm kiếm "<?php echo $_GET["keyword"] ?>"</h3>
+
+
+                </div>
+                <?php
+                $link = "/timkiem/?keyword={$keyword}&pages=[i]";
+                $tong = ceil($sum / $number);
+                echo $Produc->PhanTrang($tong, $Pages, $link);
+                ?>
+            </div>
+        </div>
+    </div>
+</div>

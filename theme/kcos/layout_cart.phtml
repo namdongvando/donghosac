@@ -1,0 +1,34 @@
+<?php
+//include ("LoadTheme.php");
+$functionLayout = new theme\kcos\functionLayout();
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+    </head>
+    <body class="option6" ng-cloak="TRUE" ng-app="rootApp" ng-controller="homeController" >
+        <?php
+        $functionLayout->header();
+        ?>
+        <div class="columns-container"  >
+            <div class="container" id="columns">
+                <?php
+                $bre = new Model\Breadcrumb();
+                $bre->showBreadcrumb();
+                ?>
+            </div>
+        </div>
+        <?php
+        include $Content;
+        $functionLayout->footer();
+        $functionLayout->js();
+        ?>
+    </body>
+</html>
+<?php 
+    $functionLayout->DeCodeHTML();
+?>1

@@ -1,0 +1,34 @@
+<?php
+ob_start();
+
+use theme\gocvoi\functionLayout;
+
+$functionLayout = new theme\gocvoi\functionLayout();
+?>
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+    </head>
+    <body class="site home">
+        <div id="body-wrapper">
+            <?php
+            $functionLayout->header()
+            ?>
+            <div class="body">
+                <?php
+                include_once $Content;
+                ?>
+            </div>
+            <?php
+            $functionLayout->footer();
+            ?>
+        </div>
+    </body>
+</html>
+<?php
+$functionLayout->DeCodeHTML();
+new functionLayout();
+?>

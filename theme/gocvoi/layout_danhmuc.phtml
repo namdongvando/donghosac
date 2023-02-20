@@ -1,0 +1,52 @@
+<?php
+
+use theme\gocvoi\functionLayout;
+
+$functionLayout = new theme\gocvoi\functionLayout();
+ob_start();
+?>
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+    </head>
+    <body class="site home">
+        <div id="body-wrapper">
+            <?php
+            $functionLayout->header();
+            ?>
+            <div class="body">
+                <?php
+                $functionLayout->breadcrumb();
+                ?>
+
+                <div class="body-content">
+                    <div class="container">
+                        <div class="row">
+                            <div id="main-content" class="col-sm-8 col-md-9 pull-right">
+                                <?php
+                                include_once $Content;
+                                ?>
+                            </div>
+                            <aside id="aside" class="col-sm-4 col-md-3">
+                                <?php
+                                $functionLayout->LeftAside();
+                                ?>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php
+            $functionLayout->footer();
+            ?>
+        </div>
+    </body>
+</html>
+<?php
+$functionLayout->DeCodeHTML();
+new functionLayout();
+?>

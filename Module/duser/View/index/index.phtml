@@ -1,0 +1,71 @@
+<?php
+$Model_Duser = new Module\duser\Model\Duser();
+$DSOption = $Model_Duser->Admins(FALSE);
+?>
+<div class="clearfix" ></div>
+<div class="panel ">
+    <div class="panel-heading">
+        <h3 class="panel-title">Danh Sách Tài Khoản
+            <a href="<?php echo \Module\duser\Model\LinkCommon::LinkAddUser() ?>" class="pull-right btn btn-default" >
+                __langAdd___ <i class="fa fa-plus" ></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table id="datatablea" class="dataTable table table-bordered table-hover table-compare table-striped" >
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Sđt</th>
+                    <th>Địa Chỉ</th>
+                    <th>Ghi Chú</th>
+                    <th>Nhóm</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($DSOption as $User) {
+                    $_User = new \Module\duser\Model\Duser($User);
+                    ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo Module\duser\Model\LinkCommon::LinkEdit($User["Username"]); ?>" >
+                                <?php echo $User["Username"] ?>
+                            </a>
+
+                        </td>
+                        <td>
+                            <a href="<?php echo Module\duser\Model\LinkCommon::LinkEdit($User["Username"]); ?>" >
+                                <?php echo $User["Email"] ?>
+                            </a>
+
+                        </td>
+                        <td>
+                            <a href="<?php echo Module\duser\Model\LinkCommon::LinkEdit($User["Username"]); ?>" >
+                                <?php echo $User["Phone"] ?>
+                            </a>
+                        </td>
+                        <td><?php echo $User["Address"] ?></td>
+                        <td><?php echo $User["Note"] ?></td>
+                        <th><?php echo $_User->Groups(); ?></th>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Sđt</th>
+                    <th>Địa Chỉ</th>
+                    <th>Ghi Chú</th>
+                    <th>Nhóm</th>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+</div>

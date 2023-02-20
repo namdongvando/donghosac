@@ -1,0 +1,88 @@
+<?php
+
+use theme\gocvoi\functionLayout;
+
+$functionLayout = new theme\gocvoi\functionLayout();
+ob_start();
+?>
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+    </head>
+    <body class="site home">
+        <div id="body-wrapper">
+            <?php
+            $functionLayout->header()
+            ?>
+            <div class="body">
+                <div class="breadcrumb">
+                    <div class="container flex breadcrumb-wrapper">
+                        <h1 class="page-title">Sản phẩm</h1>
+                        <ul class="pathway flex">
+                            <li><a href="./index.html">Trang chủ</a></li>
+                            <li><span>Sản phẩm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div class="container">
+                        <div class="row">
+                            <div id="main-content" class="col-sm-8 col-md-9 pull-right">
+                                <div class="category">
+                                    <div class="products-list">
+                                        <div class="row">
+                                            <?php
+                                            include_once $Content;
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="pagination">
+                                        <ul class="flex">
+                                            <li><a href="./category.html">1</a></li>
+                                            <li class="current"><span>2</span></li>
+                                            <li><a href="./category.html">3</a></li>
+                                            <li><a href="./category.html">4</a></li>
+                                            <li class="pagination-next"><a href="./category.html">Tiếp</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <aside id="aside" class="col-sm-4 col-md-3">
+                                <div class="products-categories aside-module">
+                                    <h2 class="aside-module-title">Danh mục sản phẩm</h2>
+                                    <div class="aside-module-content">
+                                        <ul class="categories-list">
+                                            <li><a href="./category.html">Áo thun tay ngắn</a></li>
+                                            <li><a href="./category.html">Áo thun tay dài</a></li>
+                                            <li><a href="./category.html">Áo thun có cổ</a></li>
+                                            <li><a href="./category.html">Áo khoác</a></li>
+                                            <li><a href="./category.html">Quần</a></li>
+                                            <li><a href="./category.html">Giày dép</a></li>
+                                            <li><a href="./category.html">Túi, ví, dây nịch</a></li>
+                                            <li><a href="./category.html">Mắt kính</a></li>
+                                            <li><a href="./category.html">Đồng hồ</a></li>
+                                            <li><a href="./category.html">Nước hoa nam</a></li>
+                                            <li><a href="./category.html">Sets (combo)</a></li>
+                                            <li><a href="./category.html">Phụ kiện</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php
+            $functionLayout->footer();
+            ?>
+        </div>
+    </body>
+</html>
+<?php
+$functionLayout->DeCodeHTML();
+?>

@@ -1,0 +1,98 @@
+<?php
+$functionLayout = new theme\home\functionLayout();
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <?php
+        $functionLayout->head();
+        ?>
+        <script src="/public/partials/loaderpartials/home/homeconfig.js" type="text/javascript" ></script>
+        
+    </head>
+    <body class="option3" ng-cloak="TRUE" ng-app="rootApp"  >
+        <?php
+        $functionLayout->header();
+        ?> 
+        <div class="columns-container"  >
+            <div class="container" id="columns">
+                <!-- breadcrumb -->
+                <?php
+                $bre = new Model\Breadcrumb();
+                $bre->showBreadcrumb();
+                ?>
+                <!-- ./breadcrumb -->
+                <!-- row -->
+                <div class="row">
+                    <!-- Left colunm -->
+                    <div class="column col-xs-12 col-sm-3" id="left_column">
+                        <!-- block category -->
+                        <div class="block left-module">
+                            <p class="title_block">Danh Mục Sản Phẩm</p>
+                            <div class="block_content">
+                                <!-- layered -->
+                                <div class="layered layered-category">
+                                    <div class="layered-content " ng-controller="leftmenuController" >
+                                        <ul class="tree-menu">
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li ng-show="!_leftMenu" ><span></span><a href="#"  >Loading...</a></li>
+                                            <li  ng-repeat="mainmenu in _leftMenu" >
+                                                <span></span> <a href="{{mainmenu.Link}}"> {{mainmenu.catName}}</a>
+                                                <ul >
+                                                    <li ng-repeat="submainmenu in mainmenu.DSDanhMucCon" ><span></span>
+                                                        <a href="{{submainmenu.Link}}" >
+                                                            {{submainmenu.catName}}
+                                                        </a>
+                                                        <ul>
+                                                            <li ng-repeat="submainmenu1 in submainmenu.DSDanhMucCon" ><span></span> 
+                                                                <a href="{{submainmenu1.Link}}">
+                                                                    {{submainmenu1.catName}}
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <!-- ./layered -->
+                            </div>
+                        </div>
+                        <!-- ./block category  -->
+                    </div>
+                    <!-- ./left colunm -->
+                    <!-- Center colunm-->
+                    <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                        <?php
+                        include $Content;
+                        ?>
+                    </div>
+                    <!-- ./ Center colunm -->
+                </div>
+                <!-- ./row-->
+            </div>
+        </div>
+
+        <?php
+        $functionLayout->footer();
+        ?>
+        <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+        <?php
+        $functionLayout->js();
+        ?>
+        <script type="text/javascript" src="/public/home/assets/lib/jquery.elevatezoom.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/fancyBox/jquery.fancybox.js"></script>
+    </body>
+</html>

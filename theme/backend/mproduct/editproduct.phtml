@@ -1,0 +1,149 @@
+<?php
+$_product = $data["p"];
+$Product = new \Model\Products($_product);
+
+$_product["CatName"] = $Product->CatName($_product["catID"]);
+?>
+<div class="box box-solid " ng-controller="editproductController" ng-init="editproductInit('<?php echo $_product["ID"] ?>')"  >
+    <div class="box-header bg-green-gradient">
+        <a class="btn btn-primary" href="/mproduct/detailproduct/<?php echo $_product["ID"] ?>"><i class="fa fa-angle-left" ></i></a>
+        <h3 class="box-title">Danh Mục Sản Phẩm</h3>
+        <!-- tools box -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <form action="" method="POST" enctype="multipart/form-data" >
+            <div class="col-md-9" >
+                <div class="form-group">
+                    <?php
+                    \Model\ProductsForm::nameProduct($_product["nameProduct"])->renderHTML();
+                    \Model\ProductsForm::ID($_product["ID"])->render();
+                    ?>
+                    <input type="hidden" value="vi" class="form-control" name="lang" >
+                </div>
+                <div class="form-group hidden">
+                    <label >ID</label>
+                    <input type="text" value="<?php echo $_product["ID"] ?>" class="form-control" name="ID" >
+                </div>
+                <div class="row" >
+                    <div class="col-md-6" >
+                        <?php
+                        \Model\ProductsForm::Price(floatval($_product["Price"]))->renderHTML();
+                        ?>
+                    </div>
+                    <div class="col-md-6" >
+                        <?php
+                        \Model\ProductsForm::oldPrice(floatval($_product["oldPrice"]))->renderHTML();
+                        ?>
+                    </div>
+                </div>
+
+                <div role="tabpanel">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <?php
+                            \Model\ProductsForm::Summary($_product["Summary"])->renderHTML();
+                            \Model\ProductsForm::Content($_product["Content"])->renderHTML();
+                            \Model\ProductsForm::Note($_product["Note"])->renderHTML();
+                            ?>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="HinhAnh">
+                            <div class="form-group " >
+                                <div>
+                                    Hình Ảnh
+                                    <label style="border: 1px solid #000;background-color: rgba(0, 0, 0, 0.34);color: #fff;text-align: center;position: relative;height: 105px;display: block;z-index: 2" >
+                                        Chọn Hình
+                                        <input style="display: none" onclick="BrowseServer('Images:/sanpham/', 'UrlHinh')"  type="button" name="btnChonFile" id="btnChonFile" value="Chọn File" />
+                                        <div class="HinhChon" style="position: absolute;top: 0px;z-index: 1" >
+                                            <img id="HinhQuanCao" src="<?php echo $Product->UrlHinh() ?>" style="height: 100px;max-width: 200px"  >
+                                        </div>
+                                    </label>
+                                    <div style="clear: both"></div>
+                                    <input readonly="" type="text"  value="<?php echo $Product->UrlHinh(); ?>" class="form-control" id="UrlHinh" name="UrlHinh" >
+                                </div>
+                                <label >Hình Sản Phẩm</label>
+                                <div class="form-group hidden">
+                                    <label>
+                                        <input type="file" name="fileImages[]" >
+                                        <img src="" style="height: 100px;" >
+                                    </label>
+                                    <?php
+                                    $images = $Product->getAllImges($Product->ID);
+                                    $dem = 0;
+                                    if ($images)
+                                        foreach ($images as $value) {
+                                            ?>
+                                            <div class="col-md-3" id="hinh<?php echo $dem ?>" >
+                                                <button type="button" ng-click="XoaHinhSanPham('<?php echo $value ?>', 'hinh<?php echo $dem ?>')" class="btn btn-danger btn-sm" ><i class="fa fa-times" ></i></button>
+                                                <label>
+                                                    <img style="height: 150px;" src="<?php echo $value ?>" >
+                                                    <input ng-selected="_Product.UrlHinh == '<?php echo $value ?>'" ng-model="_Product.UrlHinh" type="radio" value="<?php echo $value ?>" >
+                                                </label>
+                                            </div>
+                                            <?php
+                                            $dem++;
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" >
+                <div class="form-group">
+                    <label></label>
+                    <button name="LuuSanPham" class="btn btn-block btn-primary" type="submit" >Lưu</button>
+                </div>
+                <?php
+                \Model\ProductsForm::catID($_product["catID"])->renderHTML();
+                ?>
+                <div class="form-group">
+                    <div>
+                        Hình Ảnh
+                        <label style="border: 1px solid #000;background-color: rgba(0, 0, 0, 0.34);color: #fff;text-align: center;position: relative;height: 105px;display: block;z-index: 2" >
+                            Chọn Hình
+                            <input style="display: none" onclick="BrowseServer('Images:/sanpham/', 'UrlHinh')"  type="button" name="btnChonFile" id="btnChonFile" value="Chọn File" />
+                            <div class="HinhChon" style="position: absolute;top: 0px;z-index: 1" >
+                                <img id="HinhQuanCao" src="<?php echo $Product->UrlHinh() ?>" style="height: 100px;max-width: 200px"  >
+                            </div>
+                        </label>
+                        <div style="clear: both"></div>
+                        <input readonly="" type="text"  value="<?php echo $Product->UrlHinh(); ?>" class="form-control" id="UrlHinh" name="UrlHinh" >
+                    </div>
+                    <label >Hình Sản Phẩm</label>
+                    <div class="form-group hidden">
+                        <label>
+                            <input type="file" name="fileImages[]" >
+                            <img src="" style="height: 100px;" >
+                        </label>
+
+                        <?php
+                        $images = $Product->getAllImges($Product->ID);
+                        $dem = 0;
+                        if ($images)
+                            foreach ($images as $value) {
+                                ?>
+                                <div class="col-md-3" id="hinh<?php echo $dem ?>" >
+                                    <button type="button" ng-click="XoaHinhSanPham('<?php echo $value ?>', 'hinh<?php echo $dem ?>')" class="btn btn-danger btn-sm" ><i class="fa fa-times" ></i></button>
+                                    <label>
+                                        <img style="height: 150px;" src="<?php echo $value ?>" >
+                                        <input ng-selected="_Product.UrlHinh == '<?php echo $value ?>'" ng-model="_Product.UrlHinh" type="radio" value="<?php echo $value ?>" >
+                                    </label>
+                                </div>
+                                <?php
+                                $dem++;
+                            }
+                        ?>
+                    </div>
+                </div>
+                <?php
+                \Model\ProductsForm::Number($_product["Number"])->renderHTML();
+                \Model\ProductsForm::BuyTimes($_product["BuyTimes"])->renderHTML();
+                \Model\ProductsForm::Views($_product["Views"])->renderHTML();
+                \Model\ProductsForm::isShow($_product["isShow"])->renderHTML();
+                ?>
+            </div>
+
+        </form>
+    </div>
+</div>

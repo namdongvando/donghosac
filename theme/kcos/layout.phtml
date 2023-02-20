@@ -1,0 +1,35 @@
+<?php
+//include ("LoadTheme.php");
+$functionLayout = new theme\kcos\functionLayout();
+?><!DOCTYPE html>
+<html>
+    <head>
+        <?php
+        $functionLayout->head();
+        flush();
+        ?>
+
+    </head>
+    <body class="option6 " ng-cloak="TRUE" ng-app="rootApp"   ng-controller="homeController" >
+        <?php
+        $functionLayout->header();
+        flush();
+        $functionLayout->homeslider();
+        flush();
+        $functionLayout->pagetop();
+        flush();
+        include $Content;
+        flush();
+        $functionLayout->TinTucFooter();
+        flush();
+        $functionLayout->footer();
+        flush();
+        $functionLayout->js();
+        flush();
+        ?>
+    </body>
+</html>
+<?php 
+    $functionLayout->DeCodeHTML();
+    flush();
+?>

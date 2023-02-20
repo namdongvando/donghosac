@@ -1,0 +1,81 @@
+<?php
+$view_theme = $functionLayout;
+$Category = $data["Category"];
+$cat = new \Model\Category();
+$listCatID = [$Category->catID];
+$cat->AllCategoryByParentID([$Category->catID], $listCatID);
+$product = new \Model\Products();
+$indexPges = !empty($_GET["page"]) ? intval($_GET["page"]) : 1;
+$numberPges = !empty($_GET["num"]) ? intval($_GET["num"]) : 24;
+$sum = 0;
+$DSProduct = $product->ProductsByCatID($listCatID, $indexPges, $numberPges, $sum);
+?>
+<div class="category">
+    <div class="products-list">
+        <div class="row">
+            <?php
+            if ($DSProduct) {
+                foreach ($DSProduct as $k => $value) {
+                    $_pro = new \Model\Products($value);
+                    ?>
+                    <div class="product-item col-sm-6 col-md-4 product-item wow fadeInUp">
+                        <div class="product-item-image">
+                            <figure>
+                                <a href="<?php echo $_pro->linkProduct() ?>">
+                                    <img src="<?php echo $_pro->UrlHinh() ?>" alt="<?php echo $_pro->nameProduct ?>">
+                                </a>
+                                <?php
+                                if ($_pro->Number == 0) {
+                                    ?>
+                                    <span class="product-out-store">Hết Hàng</span>
+                                    <?php
+                                }
+                                ?>
+
+                            </figure>
+                            <?php
+                            if ($_pro->oldPrice > 0) {
+                                ?>
+                                <span class="product-item-label"><?php echo $_pro->GiamGia(); ?>%</span>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <h3 class="product-item-title">
+                            <a href="<?php echo $_pro->linkProduct() ?>"><?php echo $_pro->nameProduct ?></a>
+                        </h3>
+                        <div class="product-item-price">
+                            <?php
+                            if ($_pro->oldPrice > 0) {
+                                ?>
+                                <del><?php echo $_pro->oldPrice() ?></del>
+                                <?php
+                            }
+                            ?>
+                            <ins><?php echo $_pro->Price(); ?></ins>
+
+                        </div>
+                        <div class="product-item-view readmore">
+                            <?php
+                            $_pro->btnGioHang();
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                ?>
+                <p>Đang Cập Nhật Sản Phẩm</p>
+                <?php
+            }
+            ?>
+
+        </div>
+        <div class="row">
+            <?php
+            $ptt = ceil($sum / $numberPges);
+            echo \lib\Common::PhanTrang($ptt, $indexPges, $Category->Link . "/?page=[i]");
+            ?>
+        </div>
+    </div>
+</div>

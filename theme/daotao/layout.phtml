@@ -1,0 +1,25 @@
+<?php
+$functionLayout = new theme\daotao\functionLayout();
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php
+        $functionLayout->head();
+        ?>
+        <script src="/public/partials/loaderpartials/home/homeconfig.js" type="text/javascript" ></script>
+    </head>
+    <body class="option5" ng-cloak="TRUE" ng-app="rootApp"  >
+        <?php
+        $functionLayout->header();
+        $functionLayout->homeslider();
+//        $functionLayout->services();
+        include $Content;
+        $functionLayout->footer();
+        ?>
+        <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+        <?php
+        $functionLayout->js();
+        ?>
+    </body>
+</html>
