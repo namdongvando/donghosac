@@ -2,10 +2,12 @@
 
 namespace theme\backend;
 
-class backend extends \Model\Database {
+class backend extends \Model\Database
+{
 
-    function head() {
-        ?>
+    function head()
+    {
+?>
         <link rel="shortcut icon" href="/public/no-image.jpg" />
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="/public/admin/bootstrap/css/bootstrap.min.css">
@@ -30,13 +32,15 @@ class backend extends \Model\Database {
         <link rel="stylesheet" href="/public/admin/plugins/daterangepicker/daterangepicker-bs3.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="/public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-        <link href="/public/admin/plugins/select2/select2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/public/admin/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="/public/App.css" rel="stylesheet" type="text/css" />
         <script src="/public/ckfinder/ckfinder.js" type="text/javascript"></script>
-        <?php
+    <?php
     }
 
-    function Menu() {
-        ?>
+    function Menu()
+    {
+    ?>
         <header class="main-header ">
             <!-- Logo -->
             <a href="/backend/" class="logo">
@@ -49,7 +53,7 @@ class backend extends \Model\Database {
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="/" target="_blank"  >Xem Website</a></li>
+                        <li><a href="/" target="_blank">Xem Website</a></li>
                         <li class="hidden dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope-o"></i>
@@ -126,7 +130,7 @@ class backend extends \Model\Database {
                             </ul>
                         </li>
                         <!-- Notifications: style can be found in dropdown.less -->
-                        <li  class="hidden dropdown notifications-menu">
+                        <li class="hidden dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
                                 <span class="label label-warning">10</span>
@@ -268,7 +272,7 @@ class backend extends \Model\Database {
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar" ng-controller="bklayoutController" ng-init='bklayoutInit(<?php echo $this->_encode($_SESSION[QuanTri]); ?>)'  >
+        <aside class="main-sidebar" ng-controller="bklayoutController" ng-init='bklayoutInit(<?php echo $this->_encode($_SESSION[QuanTri]); ?>)'>
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar ">
                 <!-- Sidebar user panel -->
@@ -293,7 +297,7 @@ class backend extends \Model\Database {
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu ">
-                    <li class="header text-center text-uppercase " style="color: #ddd;" ><b>Chức Năng Chính</b></li>
+                    <li class="header text-center text-uppercase " style="color: #ddd;"><b>Chức Năng Chính</b></li>
                     <li class="treeview">
                         <a href="/backend/hinhanh">
                             <i class="fa fa-list-alt"></i> <span>Thư Viện Hình</span>
@@ -401,24 +405,25 @@ class backend extends \Model\Database {
                     </li>
 
                 </ul>
-                <div class="clearfix" ></div>
-                <div class="connectedSortable" style="background-color: #ddd;" >
+                <div class="clearfix"></div>
+                <div class="connectedSortable" style="background-color: #ddd;">
                 </div>
             </section>
             <!-- /.sidebar -->
         </aside>
-        <?php
+    <?php
     }
 
-    function js() {
-        ?>
+    function js()
+    {
+    ?>
         <!-- jQuery 2.1.4 -->
         <script src="/public/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-                            $.widget.bridge('uibutton', $.ui.button);
+            $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.5 -->
         <script src="/public/admin/bootstrap/js/bootstrap.min.js"></script>
@@ -452,51 +457,52 @@ class backend extends \Model\Database {
         <script src="/public/admin/dist/js/demo.js"></script>
 
         <script>
+            function BrowseServer(startupPath, functionData) {
+                var finder = new CKFinder();
+                finder.BasePath = '<?php echo BASE_URL ?>public/';
+                finder.startupPath = startupPath;
+                finder.selectActionFunction = SetFileField;
+                finder.selectActionData = functionData;
+                finder.selectThumbnailActionFunction = ShowThumbnails;
+                finder.popup();
+            }
 
-                            function BrowseServer(startupPath, functionData) {
-                                var finder = new CKFinder();
-                                finder.BasePath = '<?php echo BASE_URL ?>public/';
-                                finder.startupPath = startupPath;
-                                finder.selectActionFunction = SetFileField;
-                                finder.selectActionData = functionData;
-                                finder.selectThumbnailActionFunction = ShowThumbnails;
-                                finder.popup();
-                            }
-                            function SetFileField(fileUrl, data) {
-                                document.getElementById(data["selectActionData"]).value = fileUrl;
-                                var ID = data["selectActionData"];
-                                hienthumb(fileUrl, ID);
-                            }
-                            function ShowThumbnails(fileUrl, data) {
-                                var sFileName = this.getSelectedFile().name;
+            function SetFileField(fileUrl, data) {
+                document.getElementById(data["selectActionData"]).value = fileUrl;
+                var ID = data["selectActionData"];
+                hienthumb(fileUrl, ID);
+            }
 
-                                document.getElementById('thumbnails').innerHTML +=
-                                        '<div class="thumb">' +
-                                        '<img src="' + fileUrl + '" />' +
-                                        '<div class="caption">' +
-                                        '<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
-                                        '</div>' +
-                                        '</div>';
-                                document.getElementById('preview').style.display = "";
-                                return false;
+            function ShowThumbnails(fileUrl, data) {
+                var sFileName = this.getSelectedFile().name;
 
-                            }
-                            function hienthumb(fileUrl, ID) {
-                                if (fileUrl != "") {
-                                    $('#HinhQuanCao').attr('src', fileUrl);
-                                    var bien = "<img src='" + fileUrl + "'  height='100'>";
-                                    $('#' + ID).parent().children('label').children('.HinhChon').html(bien);
-                                }
-                                ;
-                            }
+                document.getElementById('thumbnails').innerHTML +=
+                    '<div class="thumb">' +
+                    '<img src="' + fileUrl + '" />' +
+                    '<div class="caption">' +
+                    '<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+                    '</div>' +
+                    '</div>';
+                document.getElementById('preview').style.display = "";
+                return false;
+
+            }
+
+            function hienthumb(fileUrl, ID) {
+                if (fileUrl != "") {
+                    $('#HinhQuanCao').attr('src', fileUrl);
+                    var bien = "<img src='" + fileUrl + "'  height='100'>";
+                    $('#' + ID).parent().children('label').children('.HinhChon').html(bien);
+                };
+            }
         </script>
 
-        <?php
+<?php
     }
 
-    function Breadcrumb() {
+    function Breadcrumb()
+    {
         $brea = new \Model\Breadcrumb();
         $brea->backend();
     }
-
 }

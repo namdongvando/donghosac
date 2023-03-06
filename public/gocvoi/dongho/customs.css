@@ -253,3 +253,7 @@ ul.categories-list li{
     background: #fff;
     color: #000;
 }
+.module-title{
+    font-family: inherit;
+    text-transform: capitalize;
+}

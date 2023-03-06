@@ -16,8 +16,8 @@ $INI['host'] = "localhost";
 // $INI['username'] = "tefdqcgmhosting_donghoxac";
 $INI['username'] = "root";
 
-$INI['password'] = "zaq@123Abc456";
-// $INI['password'] = ""; 
+// $INI['password'] = "zaq@123Abc456";
+$INI['password'] = ""; 
 $INI['DBname'] = "tefdqcgmhosting_donghoxac";
 spl_autoload_register(function ($class) {
     $class = str_replace("\\", "_", $class);
