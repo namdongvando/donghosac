@@ -21,8 +21,5 @@ RewriteRule san-pham\/  index.php?ctrl=index&action=sanpham&param=1 [L]
 RewriteRule san-pham.html  index.php?ctrl=index&action=sanpham&param=1 [L]
 
 RewriteRule (.*)  index.php [L]
-
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php74 .php .php7 .phtml
-</IfModule>
+ 
 

@@ -380,34 +380,10 @@ class backend extends \Model\Database
                             <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-share"></i> <span>Multilevel</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                        </ul>
-                    </li>
+                    
 
                 </ul>
-                <div class="clearfix"></div>
-                <div class="connectedSortable" style="background-color: #ddd;">
-                </div>
+                <div class="clearfix"></div> 
             </section>
             <!-- /.sidebar -->
         </aside>
@@ -459,7 +435,7 @@ class backend extends \Model\Database
         <script>
             function BrowseServer(startupPath, functionData) {
                 var finder = new CKFinder();
-                finder.BasePath = '<?php echo BASE_URL ?>public/';
+                finder.BasePath = '/public/';
                 finder.startupPath = startupPath;
                 finder.selectActionFunction = SetFileField;
                 finder.selectActionData = functionData;

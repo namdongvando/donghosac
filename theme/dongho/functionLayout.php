@@ -244,7 +244,7 @@ class functionLayout {
                 </div>
             </div>
             <div class="header-bottom">
-                <div class="container-fluid  flex">
+                <div class="container  flex">
                     <h1 class="logo">
                         <a href="/">
                             <img src="__Logo___" alt="__Webname___">
@@ -274,7 +274,8 @@ class functionLayout {
                             <div class="menu-body">
                                 <ul class="flex">
                                     <?php
-                                    foreach ($menus as $k => $value) {
+                                    foreach ($menus as $k => $value) 
+                                    {
                                         $_m = new Menu($value);
                                         ?>
                                         <li class="active">
@@ -511,7 +512,7 @@ class functionLayout {
                                 </div>
                                 <div class="footer-information-item-content">
                                     <h3>Hàng Đã Sử Dụng</h3>
-                                    <span>Không Bảo Hành, Không bao vô nước</span>
+                                    <span>Không Bảo Hành</span>
                                 </div>
                             </div>
                         </div>
@@ -532,8 +533,8 @@ class functionLayout {
                                     <img src="/public/gocvoi/images/icon-phone.png" alt="HLV/ Tư vấn">
                                 </div>
                                 <div class="footer-information-item-content">
-                                    <span style="color: #000;" >Điện thoại tư vấn</span>
-                                    <h3><a href="tel:__Hotline___" class="" >__Hotline___</a></h3>
+                                    <h3>Điện thoại tư vấn</h3>
+                                    <span><a href="tel:__Hotline___" class="" >__Hotline___</a></span>
                                 </div>
                             </div>
                         </div>
@@ -549,7 +550,7 @@ class functionLayout {
                         <div class="container">
                             <div class="flex flex-baseline">
                                 <div class="footer-bottom-module">
-                                    <h2 class="footer-bottom-module-header">DongHo</h2>
+                                    <h2 class="footer-bottom-module-header">__WebName___</h2>
                                     <div class="footer-bottom-module-body">
                                         <ul class="menu-footer-bottom">
                                             <?php
@@ -591,32 +592,32 @@ class functionLayout {
                                     <div class="footer-bottom-module-body">
                                         <div class="social-list flex">
                                             <div class="social-item">
-                                                <a href="#" title="Facebook">
+                                                <a href="__linkFacebook___" title="Facebook">
                                                     <img src="/public/gocvoi/images/icon-facebook.png" alt="Facebook">
                                                 </a>
                                             </div>
                                             <div class="social-item">
-                                                <a href="#" title="Twitter">
+                                                <a href="__linkTwitter___" title="Twitter">
                                                     <img src="/public/gocvoi/images/icon-twitter.png" alt="Twitter">
                                                 </a>
                                             </div>
                                             <div class="social-item">
-                                                <a href="#" title="Google Plus">
+                                                <a href="__linkGoogle___" title="Google Plus">
                                                     <img src="/public/gocvoi/images/icon-google-plus.png" alt="Google Plus">
                                                 </a>
                                             </div>
                                             <div class="social-item">
-                                                <a href="#" title="Youtube">
+                                                <a href="__linkYoutube___" title="Youtube">
                                                     <img src="/public/gocvoi/images/icon-youtube.png" alt="Youtube">
                                                 </a>
                                             </div>
                                             <div class="social-item">
-                                                <a href="#" title="Pinterest">
+                                                <a href="__linkPinterest___" title="Pinterest">
                                                     <img src="/public/gocvoi/images/icon-pinterest.png" alt="Pinterest">
                                                 </a>
                                             </div>
                                             <div class="social-item">
-                                                <a href="#" title="Instagram">
+                                                <a href="__linkInstagram___" title="Instagram">
                                                     <img src="/public/gocvoi/images/icon-instagram.png" alt="Instagram">
                                                 </a>
                                             </div>
@@ -642,7 +643,7 @@ class functionLayout {
                     </div>
                     <div class="copyright align-center">
                         <div class="container">
-                            <p>&copy; 2021 dongdoxac.com - All rights reserved.<br/>power by nguyenvando.net </p>
+                            <p>&copy; 2021 __WebName___ - All rights reserved.<br/>power by nguyenvando.net </p>
                         </div>
                     </div>
                 </div>

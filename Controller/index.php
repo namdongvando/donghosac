@@ -14,9 +14,7 @@ class Controller_index extends Application
     public $Pages;
 
     public $News;
-
-
-
+ 
     function __construct()
     {
 

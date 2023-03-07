@@ -256,4 +256,6 @@ ul.categories-list li{
 .module-title{
     font-family: inherit;
     text-transform: capitalize;
+    color: #f11616;
+    font-weight: bold;
 }

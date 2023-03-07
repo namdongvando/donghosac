@@ -121,8 +121,7 @@ class ProductsForm implements ProductsIForm {
         $properties["value"] = $val;
         $properties["Id"] = __FUNCTION__;
         $name = self::FormName . "[" . __FUNCTION__ . "]";
-        $option = Category::ToSelect();
-        return new FormRender(new Element\Select("Ngôn Ngữ", $name, $option, $properties));
+        return new FormRender(new Element\Select("Ngôn Ngữ", $name, ["vi"=>"Tiếng việt"], $properties));
     }
 
     public static function nameProduct($val = null) {
