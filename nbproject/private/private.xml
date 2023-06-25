@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Module/cart/Controller/vieworder.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/lib/Common.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Module/cart/View/vieworder/orderbystatus.phtml</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Model/Error.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Controller/mproduct.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Model/Category.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Module/cart/Model/Order.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Module/cart/View/vieworder/orderdetail.phtml</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Module/cart/View/vieworder/index.phtml</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/theme/backend/mproduct/phantrang.phtml</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Model/Products.php</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/public/partials/mproduct/mproduct/mproductController.js</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/theme/backend/mproduct/index.phtml</file>
-            <file>file:/D:/backup/web.dev/1outtime/gocvoi.com/Model/Database.php</file>
-        </group>
-    </open-files>
-</project-private>
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/Model/Products.php</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mnews/editnews.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/Model/news.php</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mnews/addnews.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mpage/addpage.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mpage/index.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mproduct/editproduct.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/Controller/mnews.php</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/dongho/index/index.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mnews/index.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/layout_news.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/mcategory/index.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/Controller/mpage.php</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/theme/backend/layout.phtml</file>
+            <file>file:/D:/backup/web.dev/1outtime/donghosac/donghosac/Controller/mcategory.php</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,5 +1,4 @@
 <?php
-
 $functionLayout->homeslider();
 $DanhSacDanhMuc = $functionLayout->GetConfigByKey(theme\gocvoi\functionLayout::DanMucSanPham);
 $SanPham = new \Model\Products();
@@ -8,7 +7,7 @@ if ($DanhSacDanhMuc) {
     foreach ($DanhSacDanhMuc as $k => $danhmuc) {
         $cat = new \Model\Category($danhmuc["DanhMuc"]);
         $DanhSachSanPham = $cat->GetProducts();
-?>
+        ?>
 
         <div class="products-best-selling module">
             <div class="container">
@@ -19,14 +18,13 @@ if ($DanhSacDanhMuc) {
                         if ($DanhSachSanPham) {
                             foreach ($DanhSachSanPham as $pro) {
                                 $_pro = new \Model\Products($pro);
-                        ?>
+                                ?>
                                 <div class="col-sm-6 col-md-3 col-lg-2 product-item wow fadeInUp">
                                     <?php
-
                                     if ($_pro->isShow == \Model\Products::News) {
-                                    ?>
+                                        ?>
                                         <img class="icon-new" src="/public/news.png" alt="news" />
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <div class="product-item-image">
@@ -36,18 +34,17 @@ if ($DanhSacDanhMuc) {
                                             </a>
                                             <?php
                                             if ($_pro->Number == 0) {
-                                            ?>
+                                                ?>
                                                 <span class="product-out-store">Hết Hàng</span>
-                                            <?php
+                                                <?php
                                             }
                                             ?>
                                         </figure>
                                         <?php
                                         if ($_pro->oldPrice > 0) {
-                                        ?>
+                                            ?>
                                             <span class="product-item-label"><?php echo $_pro->GiamGia(); ?>%</span>
-
-                                        <?php
+                                            <?php
                                         }
                                         ?>
 
@@ -62,17 +59,13 @@ if ($DanhSacDanhMuc) {
                                     <div class="product-item-price">
 
                                         <?php
-
                                         if ($_pro->oldPrice > 0) {
+                                            ?>
 
-                                        ?>
+                                            <del><?php echo $_pro->oldPrice() ?></del>
 
-                                            <del><?php echo $_pro->oldPrice ?></del>
-
-                                        <?php
-
+                                            <?php
                                         }
-
                                         ?>
 
                                         <ins><?php echo $_pro->Price(); ?></ins>
@@ -82,9 +75,7 @@ if ($DanhSacDanhMuc) {
                                     <div class="product-item-view readmore">
 
                                         <?php
-
                                         $_pro->btnGioHang();
-
                                         ?>
 
 
@@ -93,11 +84,9 @@ if ($DanhSacDanhMuc) {
 
                                 </div>
 
-                        <?php
-
+                                <?php
                             }
                         }
-
                         ?>
 
 
@@ -110,9 +99,7 @@ if ($DanhSacDanhMuc) {
 
         </div>
 
-<?php
-
+        <?php
     }
 }
-
 ?>

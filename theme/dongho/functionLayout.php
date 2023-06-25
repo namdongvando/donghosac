@@ -4,7 +4,8 @@ namespace theme\dongho;
 
 use Model\Menu;
 
-class functionLayout {
+class functionLayout
+{
 
     const DanMucSanPham = "DanMucSanPham";
 
@@ -17,7 +18,8 @@ class functionLayout {
     public $FooterMenuCongTy;
     public $FileConfig;
 
-    function __construct() {
+    function __construct()
+    {
         ob_start();
         $this->NameTheme = 'home';
         $this->TopMainMenu = [];
@@ -30,19 +32,22 @@ class functionLayout {
         $this->loadmenu();
     }
 
-    function LoadConfig() {
+    function LoadConfig()
+    {
         $lib = new \lib\io();
         $ad = new \Model_Adapter();
         return $ad->_decode($lib->readFile($this->FileConfig));
     }
 
-    function LoadConfigArray() {
+    function LoadConfigArray()
+    {
         $lib = new \lib\io();
         $ad = new \Model_Adapter();
         return json_decode($lib->readFile($this->FileConfig), JSON_OBJECT_AS_ARRAY);
     }
 
-    function GetConfigByKey($key) {
+    function GetConfigByKey($key)
+    {
         $a = $this->LoadConfigArray();
         if (isset($a[$key])) {
             return $a[$key];
@@ -50,7 +55,8 @@ class functionLayout {
         return null;
     }
 
-    function loadmenu() {
+    function loadmenu()
+    {
 
         $a = $this->Menu->MenuByTheme($this->NameTheme);
         foreach ($a as $k => $Menu) {
@@ -88,14 +94,17 @@ class functionLayout {
         $this->FooterMenuDichVu = $this->Menu->_encode($this->FooterMenuDichVu["body"]);
 
 
-//        var_dump($this->TopMainMenu);
+        //        var_dump($this->TopMainMenu);
     }
 
-    function gethtml() {
+    function gethtml()
+    {
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $hotlint_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . "/";
         ?>
-        <title><?php echo \Model_Seo::$Title; ?></title>
+        <title>
+            <?php echo \Model_Seo::$Title; ?>
+        </title>
         <meta charset="utf-8">
         <meta http-equiv="cache-control" content="no-cache" />
         <link rel="canonical" href="<?php echo $actual_link; ?>">
@@ -127,7 +136,8 @@ class functionLayout {
         <?php
     }
 
-    function head() {
+    function head()
+    {
         $this->gethtml();
         ?>
         <link rel="stylesheet" href="/public/gocvoi/css/bootstrap.min.css">
@@ -138,32 +148,40 @@ class functionLayout {
         <link rel="stylesheet" href="/public/gocvoi/css/font-awesome.min.css">
         <link rel="stylesheet" href="/public/gocvoi/css/nano-scroll.css">
         <link rel="stylesheet" href="/public/gocvoi/css/template.css">
-        <link href="/public/gocvoi/dongho/customs.css?v=<?php echo filemtime('public/gocvoi/dongho/customs.css') ?>" rel="stylesheet" type="text/css"/>
-        <link href="/public/contact/css.css" rel="stylesheet" type="text/css"/>
+        <link href="/public/contact/css.css" rel="stylesheet" type="text/css" />
+        <link href="/public/gocvoi/dongho/customs.css?v=<?php echo filemtime('public/gocvoi/dongho/customs.css') ?>"
+            rel="stylesheet" type="text/css" />
+
+
         <script type="text/javascript" src="/public/gocvoi/js/jquery.min.js"></script>
         <script type="text/javascript" src="/public/gocvoi/js/slick.js"></script>
         <script type="text/javascript" src="/public/gocvoi/js/wow.min.js"></script>
         <script type="text/javascript" src="/public/gocvoi/js/nano-scroll.min.js"></script>
         <script src="/public/lazyloadimg/lazyloading.js" type="text/javascript"></script>
-        <script type="text/javascript" src="/public/gocvoi/js/custom.js?v=<?php echo filemtime('public/gocvoi/js/custom.js') ?>"></script>
-        <script type="text/javascript" >
+        <script type="text/javascript"
+            src="/public/gocvoi/js/custom.js?v=<?php echo filemtime('public/gocvoi/js/custom.js') ?>"></script>
+        <script type="text/javascript">
             var script = document.createElement('script');
             script.src = '/public/partials/loaderpartials/home/homeconfig.js';
             document.write(script.outerHTML);</script>
         <?php
     }
 
-    function is_mobile() {
+    function is_mobile()
+    {
         if (empty($_SERVER['HTTP_USER_AGENT'])) {
             return false;
-        } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false // many mobile devices (all iPhone, iPad, etc.)
-                || strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'BlackBerry') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mobi') !== false) {
+        } elseif (
+            strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false // many mobile devices (all iPhone, iPad, etc.)
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'BlackBerry') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mobi') !== false
+        ) {
             return true;
         }
         return false;
     }
 
-    function header() {
+    function header()
+    {
         $menu = new \Model\Menu();
         $menus = $menu->MenusByGroupParent(Menu::TopMainMenu, 0);
         $HeaderSocial = $menu->MenusByGroupParent(Menu::HeaderSocial, 0);
@@ -173,11 +191,13 @@ class functionLayout {
         ?>
         <div class="GioHang">
             <div class="GioHang_Content">
-                <a class="btn-togger-cart btn" ><i class="fa fa-times" ></i></a>
-                <h2 class="cart-title-home col-xs-12 text-center OpenSans" >Giỏ Hàng</h2>
-                <p class="OpenSans" >Bạn đang có (<?php echo $Cart->countProduct2Cart(); ?>) sản phẩm trong giỏ hàng</p>
+                <a class="btn-togger-cart btn"><i class="fa fa-times"></i></a>
+                <h2 class="cart-title-home col-xs-12 text-center OpenSans">Giỏ Hàng</h2>
+                <p class="OpenSans">Bạn đang có (
+                    <?php echo $Cart->countProduct2Cart(); ?>) sản phẩm trong giỏ hàng
+                </p>
                 <hr>
-                <div class="GioHang-body" >
+                <div class="GioHang-body">
                     <div class="col-xs-12">
                         <?php
                         foreach ($producCart as $p) {
@@ -185,13 +205,20 @@ class functionLayout {
                             ?>
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <img src="<?php echo $_p->UrlHinh(); ?>" class="img imgcart" alt="<?php echo $_p->nameProduct; ?>" title="<?php echo $_p->nameProduct; ?>" >
+                                    <img src="<?php echo $_p->UrlHinh(); ?>" class="img imgcart"
+                                        alt="<?php echo $_p->nameProduct; ?>" title="<?php echo $_p->nameProduct; ?>">
                                 </div>
                                 <div class="col-xs-10">
                                     <p>
-                                        <a href="<?php echo $_p->linkRemoveProduct(); ?>" class="btn btn-cart-delete pull-right" >Xóa</a>
-                                        <strong><?php echo $_p->nameProduct; ?></strong><br>
-                                        <span>Giá: <?php echo $_p->Price(); ?> X <?php echo $_p->Number; ?></span><br>
+                                        <a href="<?php echo $_p->linkRemoveProduct(); ?>"
+                                            class="btn btn-cart-delete pull-right">Xóa</a>
+                                        <strong>
+                                            <?php echo $_p->nameProduct; ?>
+                                        </strong><br>
+                                        <span>Giá:
+                                            <?php echo $_p->Price(); ?> X
+                                            <?php echo $_p->Number; ?>
+                                        </span><br>
                                     </p>
                                 </div>
                             </div>
@@ -202,8 +229,10 @@ class functionLayout {
                     </div>
                 </div>
                 <hr>
-                <p class="text-uppercase text-bold" >Tổng Tiền Tạm Tính: <strong class="pull-right" ><?php echo $Cart->TotalPriceVND(); ?></strong> </p>
-                <a href="<?php echo \Module\cart\Model\Cart::LinkDatHang(); ?>" class="btn btn-add-cart" >Đặt Hàng</a>
+                <p class="text-uppercase text-bold">Tổng Tiền Tạm Tính: <strong class="pull-right">
+                        <?php echo $Cart->TotalPriceVND(); ?>
+                    </strong> </p>
+                <a href="<?php echo \Module\cart\Model\Cart::LinkDatHang(); ?>" class="btn btn-add-cart">Đặt Hàng</a>
             </div>
         </div>
 
@@ -225,7 +254,11 @@ class functionLayout {
                                 <?php
                                 foreach ($TopHeaderMenu as $k => $value) {
                                     ?>
-                                    <li><a href="<?php echo $value["Link"] ?>"><?php echo $value["Name"] ?></a></li>
+                                    <li>
+                                        <a href="<?php echo $value["Link"] ?>">
+                                            <?php echo $value["Name"] ?>
+                                        </a>
+                                    </li>
                                     <?php
                                 }
                                 ?>
@@ -254,7 +287,8 @@ class functionLayout {
                         <div class="search-cart flex">
                             <div class="search">
                                 <form action="/timkiem/index/" method="get">
-                                    <input value="<?php echo isset($_REQUEST["keyword"]) ? $_REQUEST["keyword"] : ''; ?>" type="text" name="keyword" id="search-keywords" placeholder="Tìm kiếm sản phẩm">
+                                    <input value="<?php echo isset($_REQUEST["keyword"]) ? $_REQUEST["keyword"] : ''; ?>"
+                                        type="text" name="keyword" id="search-keywords" placeholder="Tìm kiếm sản phẩm">
                                     <button type="submit" id="search-submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
@@ -262,7 +296,9 @@ class functionLayout {
                                 <div class="cart-header flex">
                                     <h3 class="cart-title">Giỏ hàng</h3>
                                     <div class="cart-count">
-                                        <span><?php echo \Module\cart\Model\Cart::TongSanPham(); ?></span>
+                                        <span>
+                                            <?php echo \Module\cart\Model\Cart::TongSanPham(); ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -274,14 +310,46 @@ class functionLayout {
                             <div class="menu-body">
                                 <ul class="flex">
                                     <?php
-                                    foreach ($menus as $k => $value) 
-                                    {
+                                    foreach ($menus as $k => $value) {
                                         $_m = new Menu($value);
+                                        $menus1 = $menu->MenusByGroupParent(Menu::TopMainMenu, $_m->IDMenu);
                                         ?>
-                                        <li class="active">
-                                            <a href="<?php echo $_m->Link; ?>">
-                                                <?php echo $_m->Name; ?>
-                                            </a>
+                                        <li>
+                                            <?php
+                                            if ($menus1 == null) {
+                                                ?>
+                                                <a href="<?php echo $_m->Link; ?>">
+                                                    <?php echo $_m->Name; ?>
+                                                </a>
+
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <a href="#">
+                                                    <?php echo $_m->Name; ?>
+                                                    <i class="fa fa-caret-down"></i>
+                                                </a>
+                                                <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if ($menus1) {
+                                                ?>
+                                                <ul>
+                                                    <?php
+                                                    foreach ($menus1 as $key1 => $value1) {
+                                                        $_m1 = new Menu($value1);
+                                                        ?>
+                                                        <li><a href="<?php echo $_m1->Link ?>"><?php echo $_m1->Name ?></a></li>
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </ul>
+                                                <?php
+                                            }
+
+                                            ?>
                                         </li>
                                         <?php
                                     }
@@ -296,7 +364,8 @@ class functionLayout {
         <?php
     }
 
-    function leftmenu() {
+    function leftmenu()
+    {
         $Cat = new \Model\Category();
         $Cats = $Cat->Categorys();
         ?>
@@ -307,18 +376,18 @@ class functionLayout {
             if ($Cats)
                 foreach ($Cats as $_Category) {
                     ?>
-                    <li class="" >
+                    <li class="">
                         <span></span> <a href="<?php echo $_Category->linkCurentCategory() ?>"> <?php echo $_Category->catName ?> </a>
                         <!--ds danh muc con-->
                         <?php
-//                                                            Cấp 2
+                        //                                                            Cấp 2
                         $lCat = $_Category->Categorys4IDParent($_Category->catID);
                         if ($lCat) {
                             foreach ($lCat as $_Category1) {
                                 ?>
                                 <ul>
                                     <li><span></span>
-                                        <a href="<?php echo $_Category1->linkCurentCategory(); ?>" >
+                                        <a href="<?php echo $_Category1->linkCurentCategory(); ?>">
                                             <?php echo $_Category1->catName ?>
                                         </a>
                                         <ul>
@@ -339,7 +408,7 @@ class functionLayout {
                             }
                             ?>
 
-                            <?php
+                        <?php
                         }
                         ?>
                     </li>
@@ -352,7 +421,8 @@ class functionLayout {
         <?php
     }
 
-    function homeslider() {
+    function homeslider()
+    {
         $io = new \lib\io();
         $a = new \Model\adv();
         $DS = $a->GetFileContentGroup("homeslide");
@@ -377,7 +447,8 @@ class functionLayout {
         <?php
     }
 
-    function pagetop() {
+    function pagetop()
+    {
         $a = new \Model\adv();
         $DS = $a->AdvsByGroup("danh-muc-noi-bat");
         ?>
@@ -387,13 +458,14 @@ class functionLayout {
                 <!-- Baner bottom -->
                 <div class="row banner-bottom">
 
-                    <div class="col-sm-3" ng-repeat="item in _advDanhMucNoiBat" >
+                    <div class="col-sm-3" ng-repeat="item in _advDanhMucNoiBat">
                         <div class="banner-boder-zoom2">
                             <a href="{{item.Link}}">
-                                <img  class="lazyload QuanCao-img img-responsive"  alt="{{item.Name}}"  data-srcset="{{item.Image}}" src="/public/no-image.jpg" title="{{item.Name}}" />
+                                <img class="lazyload QuanCao-img img-responsive" alt="{{item.Name}}"
+                                    data-srcset="{{item.Image}}" src="/public/no-image.jpg" title="{{item.Name}}" />
                             </a>
                         </div>
-                        <h3 class="text-center TenQuanCao" >{{item.Name}}</h3>
+                        <h3 class="text-center TenQuanCao">{{item.Name}}</h3>
                     </div>
 
                 </div>
@@ -404,7 +476,8 @@ class functionLayout {
         <?php
     }
 
-    function servicestopfooter() {
+    function servicestopfooter()
+    {
         //
         $a = new \Model\adv();
         $DS = $a->AdvsByGroup("chinh-sach-cuoi-tran");
@@ -437,9 +510,10 @@ class functionLayout {
         <?php
     }
 
-    function services() {
+    function services()
+    {
         ?>
-        <div ng-show="<?php echo $this->LoadConfig()->DichVu ?> == '1'" >
+        <div ng-show="<?php echo $this->LoadConfig()->DichVu ?> == '1'">
             <div class="container">
                 <div class="service ">
                     <div class="col-xs-6 col-sm-3 service-item">
@@ -447,7 +521,9 @@ class functionLayout {
                             <img alt="services" src="/public/home/assets/data/s1.png" />
                         </div>
                         <div class="info">
-                            <a href="#"><h3>Free Shipping</h3></a>
+                            <a href="#">
+                                <h3>Free Shipping</h3>
+                            </a>
                             <span>On order over $200</span>
                         </div>
                     </div>
@@ -456,7 +532,9 @@ class functionLayout {
                             <img alt="services" src="/public/home/assets/data/s2.png" />
                         </div>
                         <div class="info">
-                            <a href="#"><h3>30-day return</h3></a>
+                            <a href="#">
+                                <h3>30-day return</h3>
+                            </a>
                             <span>Moneyback guarantee</span>
                         </div>
                     </div>
@@ -465,8 +543,10 @@ class functionLayout {
                             <img alt="services" src="/public/home/assets/data/s3.png" />
                         </div>
 
-                        <div class="info" >
-                            <a href="#"><h3>24/7 support</h3></a>
+                        <div class="info">
+                            <a href="#">
+                                <h3>24/7 support</h3>
+                            </a>
                             <span>Online consultations</span>
                         </div>
                     </div>
@@ -475,7 +555,9 @@ class functionLayout {
                             <img alt="services" src="/public/home/assets/data/s4.png" />
                         </div>
                         <div class="info">
-                            <a href="#"><h3>SAFE SHOPPING</h3></a>
+                            <a href="#">
+                                <h3>SAFE SHOPPING</h3>
+                            </a>
                             <span>Safe Shopping Guarantee</span>
                         </div>
                     </div>
@@ -485,7 +567,8 @@ class functionLayout {
         <?php
     }
 
-    function footer() {
+    function footer()
+    {
         ?>
         <footer id="footer">
             <div class="footer-top">
@@ -497,7 +580,8 @@ class functionLayout {
                         </div>
                         <div class="newletter-form">
                             <form action="" method="POST">
-                                <input style="border: 1px solid #ededed;font-size: 20px;padding: 10px 20px;" name="phone" id="newsletter-email" required="true">
+                                <input style="border: 1px solid #ededed;font-size: 20px;padding: 10px 20px;" name="phone"
+                                    id="newsletter-email" required="true">
                                 <button type="submit" name="newsletter-submit" id="btn-newsletter-submit">Gửi</button>
                             </form>
                         </div>
@@ -534,7 +618,7 @@ class functionLayout {
                                 </div>
                                 <div class="footer-information-item-content">
                                     <h3>Điện thoại tư vấn</h3>
-                                    <span><a href="tel:__Hotline___" class="" >__Hotline___</a></span>
+                                    <span><a href="tel:__Hotline___" class="">__Hotline___</a></span>
                                 </div>
                             </div>
                         </div>
@@ -629,11 +713,13 @@ class functionLayout {
                                     <div class="footer-bottom-module-body">
                                         <div class="message-register">
                                             <div class="message-register-description">
-                                                <p>Nhập email của bạn vào ô dưới đây và bấm GỬI để không bỏ lỡ những khuyến mại từ Chúng Tôi</p>
+                                                <p>Nhập email của bạn vào ô dưới đây và bấm GỬI để không bỏ lỡ những khuyến mại
+                                                    từ Chúng Tôi</p>
                                             </div>
                                             <form id="message-register-form" action="#" method="#">
                                                 <input type="text" name="message" id="message" placeholder="Nhập Email">
-                                                <button type="submit" name="btn-message-submit" id="btn-message-submit">Gửi</button>
+                                                <button type="submit" name="btn-message-submit"
+                                                    id="btn-message-submit">Gửi</button>
                                             </form>
                                         </div>
                                     </div>
@@ -643,12 +729,12 @@ class functionLayout {
                     </div>
                     <div class="copyright align-center">
                         <div class="container">
-                            <p>&copy; 2021 __WebName___ - All rights reserved.<br/>power by nguyenvando.net </p>
+                            <p>&copy; 2021 __WebName___ - All rights reserved.<br />power by nguyenvando.net </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="Mobie-List-button hidden-lg hidden-md hidden-sm" >
+            <div class="Mobie-List-button hidden-lg hidden-md hidden-sm">
                 <div class="contact">
                     <div class="contact-content default">
                         <div class="contact-content-item phone">
@@ -674,11 +760,13 @@ class functionLayout {
         $ThongBao = $ThongBao->GetThongBao();
         if ($ThongBao) {
             ?>
-            <div style="position: fixed;top: 0px; left: 45%;width: 300px;" class="alert alert-<?php echo $ThongBao->type ?>" >
-                <h3><?php echo $ThongBao->content ?></h3>
+            <div style="position: fixed;top: 0px; left: 45%;width: 300px;" class="alert alert-<?php echo $ThongBao->type ?>">
+                <h3>
+                    <?php echo $ThongBao->content ?>
+                </h3>
             </div>
-            <script type="text/javascript" >
-                setInterval(function() {
+            <script type="text/javascript">
+                setInterval(function () {
                     $(".alert").hide();
                 }, 1000);
                 $(".GioHang").show(1000);
@@ -687,30 +775,31 @@ class functionLayout {
         }
     }
 
-    function js() {
+    function js()
+    {
         ?>
         <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
         <!-- Script-->
-        <script  type="text/javascript" src="/public/home/assets/lib/jquery/jquery-1.11.2.min.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/lib/select2/js/select2.min.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/lib/owl.carousel/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/jquery/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/select2/js/select2.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/owl.carousel/owl.carousel.min.js"></script>
         <!--<script type="text/javascript" src="/public/home/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>-->
         <!-- COUNTDOWN -->
-        <script  type="text/javascript" src="/public/home/assets/lib/countdown/jquery.plugin.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/lib/countdown/jquery.countdown.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/countdown/jquery.plugin.js"></script>
+        <script type="text/javascript" src="/public/home/assets/lib/countdown/jquery.countdown.js"></script>
         <!-- ./COUNTDOWN -->
-        <script  type="text/javascript" src="/public/home/assets/js/jquery.actual.min.js"></script>
-        <script  type="text/javascript" src="/public/home/assets/js/theme-script.js"></script>
-        <script  type="text/javascript" >
+        <script type="text/javascript" src="/public/home/assets/js/jquery.actual.min.js"></script>
+        <script type="text/javascript" src="/public/home/assets/js/theme-script.js"></script>
+        <script type="text/javascript">
 
-                $(document).ready(function() {
-                    $(".btnchatmes").click(function() {
-                        $("#fb-page").toggle();
-                    });
-                });</script>
-        <script type="text/javascript" >
+            $(document).ready(function () {
+                $(".btnchatmes").click(function () {
+                    $("#fb-page").toggle();
+                });
+            });</script>
+        <script type="text/javascript">
             var script = document.createElement('script');
             script.src = '/public/home/assets/lib/lazysizes/lazysizes.min.js';
             document.write(script.outerHTML);</script>
@@ -718,7 +807,8 @@ class functionLayout {
         <?php
     }
 
-    function categorySlider($isMultyCategory = -1) {
+    function categorySlider($isMultyCategory = -1)
+    {
         $adv = new \Model\adv();
         if ($isMultyCategory == -1) {
             $lisAdv = $adv->AdvsByGroup("cat0");
@@ -733,8 +823,9 @@ class functionLayout {
             }
             ?>
             <!-- category-slider -->
-            <div class="category-slider"  >
-                <ul class="owl-carousel owl-style2" data-dots="false" data-loop="true" data-nav = "true" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1">
+            <div class="category-slider">
+                <ul class="owl-carousel owl-style2" data-dots="false" data-loop="true" data-nav="true" data-autoplayTimeout="1000"
+                    data-autoplayHoverPause="true" data-items="1">
                     <?php
                     foreach ($lisAdv as $_adv) {
                         ?>
@@ -751,7 +842,8 @@ class functionLayout {
         }
     }
 
-    function product($produc) {
+    function product($produc)
+    {
         $produc = new \Model\Products($produc);
         $p = new \Model\Products();
         $images = $p->getAllImges($produc->ID);
@@ -759,24 +851,28 @@ class functionLayout {
         <div class="product-container">
             <div class="left-block">
                 <a href="<?php echo $produc->linkProduct(); ?>">
-                    <img style="height: 250px;" src="/public/images_load.gif" class="lazy img-responsive" alt="<?php echo $produc->nameProduct ?>"
-                         data-srcset="<?php echo $produc->UrlHinh(); ?>" />
+                    <img style="height: 250px;" src="/public/images_load.gif" class="lazy img-responsive"
+                        alt="<?php echo $produc->nameProduct ?>" data-srcset="<?php echo $produc->UrlHinh(); ?>" />
                 </a>
                 <div class="add-to-cart">
                     <a title="Giỏ Hàng" href="/cart/index/addproduct/<?php echo $produc->ID ?>">Giỏ Hàng</a>
                 </div>
             </div>
             <div class="right-block">
-                <h3 class="product-name" style="height: 60px" >
+                <h3 class="product-name" style="height: 60px">
                     <a style="font-size: 16px;text-shadow: 0 0 1px #aaa;" href="<?php echo $produc->linkProduct(); ?>">
                         <?php echo $produc->nameProduct; ?>
                     </a>
                 </h3>
                 <div class="content_price">
-                    <span class="price product-price"><?php echo $produc->Price() ?></span>
+                    <span class="price product-price">
+                        <?php echo $produc->Price() ?>
+                    </span>
                 </div>
                 <div class="info-orther">
-                    <p>Mã Sản Phẩm: <?php echo $produc->ID ?></p>
+                    <p>Mã Sản Phẩm:
+                        <?php echo $produc->ID ?>
+                    </p>
                     <p class="availability">Tình Trạng: <span>Còn hàng</span></p>
                     <div class="product-desc">
                         <?php
@@ -789,13 +885,15 @@ class functionLayout {
         <?php
     }
 
-    function HienThiMau($Pages, $function = "mau1") {
+    function HienThiMau($Pages, $function = "mau1")
+    {
         $Model_Pages = new \Model\pages();
         $Note = $Model_Pages->_decode($Pages["Note"]);
         $this->$function($Pages);
     }
 
-    function functionName($param) {
+    function functionName($param)
+    {
         ?>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
@@ -843,8 +941,9 @@ class functionLayout {
                                     <img class="img-responsive" src="/public/home/assets/data/kid.png" alt="sport">
                                 </a>
                             </li>
-                            <li class="link_container group_head                                                                                                                                                                                                        er">
-                                <a href                                                                                                                                                                                                        ="#">Kids</a>
+                            <li
+                                class="link_container group_head                                                                                                                                                                                                        er">
+                                <a href="#">Kids</a>
                             </li>
                             <li class="link_container"><a href="#">Shoes</a></li>
                             <li class="link_container"><a href="#">Clothing</a></li>
@@ -860,28 +959,42 @@ class functionLayout {
                                     <img class="img-responsive" src="/public/home/assets/data/trending.png" alt="sport">
                                 </a>
                             </li>
-                            <li class="li                                                                                                                                                                                                        nk_container group_header"                                                                                                                                                                                                        >
+                            <li
+                                class="li                                                                                                                                                                                                        nk_container group_header">
                                 <a href="#">TRENDING</a>
                             </li>
-                            <li class="link_container"><a href                                                                                                                                                                                                        ="#">Men's Clothing</a></li>
-                            <li class="lin                                                                                                                                                                                                        k_container"><a href="#">Kid's Clothing</a></li>
-                            <li class="link_contain                                                                                                                                                                                                        er"><a href="#">Women's Clothing</                                                                                                                                                                                                        a></li>
-                            <li class="link_container"><a href="#">Accessories</a><                                                                                                                                                                                                        /li>
+                            <li class="link_container"><a href="#">Men's Clothing</a></li>
+                            <li
+                                class="lin                                                                                                                                                                                                        k_container">
+                                <a href="#">Kid's Clothing</a>
+                            </li>
+                            <li
+                                class="link_contain                                                                                                                                                                                                        er">
+                                <a href="#">Women's Clothing</ a>
+                            </li>
+                            <li class="link_container"><a href="#">Accessories</a>
+                                < /li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li><a href="category.html" class="dr                                                                                                                                                                                                        opdown-toggle" data-toggle="dropdo                                                                                                                                                                                                        wn">Sports</a></li>
+            <li><a href="category.html"
+                    class="dr                                                                                                                                                                                                        opdown-toggle"
+                    data-toggle="dropdo                                                                                                                                                                                                        wn">Sports</a>
+            </li>
             <li class="dropdown">
-                <a href="category.ht                                                                                                                                                                                                        ml" class="dropdown-toggle" data-toggle="dropdown">Foods                                                                                                                                                                                                        </a>
-                <ul class="mega_dropdown                                                                                                                                                                                                         dropdown-menu" style="width: 8                                                                                                                                                                                                        30px;">
+                <a href="category.ht                                                                                                                                                                                                        ml"
+                    class="dropdown-toggle" data-toggle="dropdown">Foods </a>
+                <ul class="mega_dropdown                                                                                                                                                                                                         dropdown-menu"
+                    style="width: 8                                                                                                                                                                                                        30px;">
                     <li class="block-container col-sm-3">
                         <ul class="block">
-                            <li class="link_contai                                                                                                                                                                                                        ner group_header">
+                            <li
+                                class="link_contai                                                                                                                                                                                                        ner group_header">
                                 <a href="#">Asian</a>
                             </li>
                             <li class="link_container">
-                                <a href                                                                                                                                                                                                        ="#">Vietnamese Pho</a>
+                                <a href="#">Vietnamese Pho</a>
                             </li>
                             <li class="link_container">
                                 <a href="#">Noodles</a>
@@ -980,7 +1093,8 @@ class functionLayout {
             </li>
             <li class="dropdown">
 
-                <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Digital<span class="notify notify-right">new</span></a>
+                <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Digital<span
+                        class="notify notify-right">new</span></a>
                 <ul class="dropdown-menu container-fluid">
                     <li class="block-container">
                         <ul class="block">
@@ -1000,13 +1114,15 @@ class functionLayout {
         <?php
     }
 
-    function TinTucFooter() {
+    function TinTucFooter()
+    {
         ?>
 
         <?php
     }
 
-    function DeCodeHTML() {
+    function DeCodeHTML()
+    {
         $str = ob_get_clean();
         $Content = new \Model\Content();
         $DSOption = $Content->Contents();
@@ -1019,7 +1135,8 @@ class functionLayout {
         echo $str;
     }
 
-    public function LeftAside() {
+    public function LeftAside()
+    {
         $cat = new \Model\Category();
         $cats = $cat->GetCategorys();
         ?>
@@ -1031,10 +1148,11 @@ class functionLayout {
                     foreach ($cats as $k => $value) {
                         $_cat = new \Model\Category($value);
                         ?>
-                        <li class="active" ><a href="<?php echo $_cat->linkCurentCategory(); ?>"><?php echo $_cat->catName; ?></a></li>
-                            <?php
-                        }
-                        ?>
+                        <li class="active"><a href="<?php echo $_cat->linkCurentCategory(); ?>"><?php echo $_cat->catName; ?></a>
+                        </li>
+                        <?php
+                    }
+                    ?>
 
                 </ul>
             </div>
@@ -1042,7 +1160,8 @@ class functionLayout {
         <?php
     }
 
-    public function breadcrumb() {
+    public function breadcrumb()
+    {
         $br = new Breadcrumb();
         echo $br->ToHtml();
     }

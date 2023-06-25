@@ -1,151 +1,132 @@
-<div class="" ng-controller="mproductController" ng-init="mproductInit()" >
-    <div class="row ">
-        <div class="modal fade" id="modal-id">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Danh Mục Sản Phẩm</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="box box-solid ">
-                            <div class="box-body">
-                                <div class="box-header">
-                                    <div class="row">
-                                        <div class="input-group" style="min-width: 100px;">
-                                            <input type="text" ng-model="timkiemdanhmuc" class="form-control input-sm pull-right" placeholder="Search">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix" ></div>
-                                    </div>
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive no-padding" style="height: 300px;" >
-                                    <ul class="todo-list" >
-                                        <li style="cursor: pointer"  ng-repeat="item in _listCategory| filter : timkiemdanhmuc" ng-click="clickSelectCategory(item.catID)" >
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </span>
-                                            <span class="text">{{item.catName}}</span>
-                                            <div class="tools">
-                                                <!--<i class="fa fa-edit"  >Chọn</i>-->
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box-body -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="col-md-12" >
-            <div class="box box-solid ">
-                <div class="box-header ">
-                    <a class="hidden btn btn-primary" data-toggle="modal" target="_self" href='#modal-id'>Danh Mục Sản Phẩm</a>
-                    <div class="box-tools">
-                        <a class="btn btn-primary" href='/mproduct/addproduct/'>Thêm Sản Phẩm</a>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="form-inline">
-
-                        <div class="form-group">
-                            <label>Tìm Kiếm</label>
-                            <input ng-model="seachProduct" ng-change='TimKiemSanPham({keyword:seachProduct}, 1, 20)' >
-                        </div>
-                        <div class="form-group">
-                            <label>Danh Mục</label>
-                            <select ng-model="catProduct" ng-change='TimKiemSanPham({keyword:seachProduct,catID:catProduct}, 1, 20)' >
-                                <option  value="{{item.catID}}" ng-repeat="item in _listCategory">{{item.catName}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <phan-trang
-                        pages-index="_listProductByCatID.pagesIndex"
-                        pages-number="20"
-                        pages-total="_listProductByCatID.totalPages"
-                        pages-params='{"keyword":seachProduct}'
-                        on-click="TimKiemSanPham(Params, pagesIndex, pagesNumber)"
-                        ></phan-trang>
-
-                    <table class="table table-bordered"  >
-
-
-                        <thead>
-                            <tr>
-                                <th>Stt</th>
-                                <th>Hinh</th>
-                                <th>Tên Sản Phẩm</th>
-                                <th style="width: 50px;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="curentproduct in _listProductByCatID.data" ng-class="curentproduct.isShow == 0 ? 'bg-gray' : ''" class=""  >
-                                <th style="width: 30px;" >{{$index + 1}}</th>
-                                <th style="width: 100px;" >
-                                    <a href="/mproduct/detailproduct/{{curentproduct.ID}}" >
-                                        <div style="background-image: url('{{curentproduct.Images}}');height: 70px;    background-size: 100% auto;background-repeat: no-repeat;" class="img-bg img-7070"  ></div>
-                                    </a>
-                                </th>
-                                <th>
-                                    <div class="col-md-6">
-                                        <a href="/mproduct/detailproduct/{{curentproduct.ID}}" >{{curentproduct.nameProduct}}</a>
-                                        <p>Giá: <span class="label-danger" ng-bind-template="{{curentproduct.Price|number:0}}" ></span> | <span style="text-decoration: line-through; " >{{curentproduct.oldPriceVND}}</span></p>
-                                        <p ><label  class="label-warning" ><i class="fa fa-eye" ></i> {{curentproduct.Views|number:0}}</label></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Ẩn Hiện: {{curentproduct.isShowStatus}}
-                                            <br>Ngày Đăng: {{curentproduct.DateCreate| date : 'dd-MM-yyyy'}}
-                                            <br>Danh Mục: <label class="label-success" >{{curentproduct.Category.catName}}</label>
-                                        </p>
-                                    </div>
-                                </th>
-                                <th style="width: 150px;" >
-                                    <div class="btn-group " style="white-space: nowrap" >
-                                        <a class="btn btn-sm btn-primary" href="/mproduct/copyproduct/{{curentproduct.ID}}">Copy</a>
-                                        <a class="btn btn-sm btn-primary" href="/mproduct/editproduct/{{curentproduct.ID}}">Sửa</a>
-                                        <a class="btn btn-sm btn-danger" target="_self" data-toggle="modal" href='#xoasanpham{{curentproduct.ID}}'>Xóa</a>
-                                    </div>
-                                    <div class="modal fade" id="xoasanpham{{curentproduct.ID}}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-red">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Thông báo!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <center>Bạn có muốn xóa sản phẩm này không?</center>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                                                    <a href="/mproduct/deleteproduct/{{curentproduct.ID}}" class="btn btn-primary" >Đồng Ý</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Stt</th>
-                                <th>Hinh</th>
-                                <th>Tên Sản Phẩm</th>
-
-                                <th style="width: 50px;">Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </section>
-    </div>
-
-</div>
-
-
+<?php
+
+use lib\Common;
+use Model\FormCommon;
+use Model\Products;
+use Model\ProductsForm;
+
+$ProductsForm = new ProductsForm();
+
+
+?>
+<div class="">
+    <div class="row ">
+        <section class="col-md-12">
+            <div class="box box-solid ">
+                <div class="box-header ">
+                    <a class="hidden btn btn-primary" data-toggle="modal" target="_self" href='#modal-id'>Danh Mục Sản
+                        Phẩm</a>
+                    <div class="box-tools">
+                        <a class="btn btn-primary" href='/mproduct/addproduct/'>Thêm Sản Phẩm</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <form method="get" action="/mproduct/index/">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <?php
+                                ProductsForm::seachName($_GET["name"] ?? "", "name")->renderHTML();
+                                ?>
+                            </div>
+                            <div class="col-md-3">
+                                <?php
+                                ProductsForm::catIDSeach($_GET["catID"] ?? "", "catID")->renderHTML();
+                                ?>
+                            </div>
+                            <div class="col-md-1">
+                                <?php
+                                FormCommon::selectRow($_GET["PagesSize"] ?? 10, "PagesSize")->renderHTML();
+                                ?>
+                            </div>
+                            <div class="col-md-3">
+                                <br />
+                                <button style="margin-top: 3px;" class="btn btn-success">Tìm Kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Stt</th>
+                                <th>Hinh</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th style="width: 50px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($data["items"]) {
+                                foreach ($data["items"] as $key => $value) {
+                                    $_p = new Products($value);
+                                    ?>
+                                    <tr class="">
+                                        <th style="width: 30px;">
+                                            <?php echo $key + 1; ?>
+                                        </th>
+                                        <th style="width: 100px;">
+                                            <a href="/mproduct/editproduct/<?php echo $_p->ID ?>">
+                                                <div style="background-image: url('<?php echo $_p->UrlHinh() ?>');height: 70px; 
+                                                background-size: 100% auto;background-repeat: no-repeat;"
+                                                    class="img-bg img-7070"></div>
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <div class="col-md-6">
+                                                <a href="/mproduct/editproduct/<?php echo $_p->ID ?>"><?php echo $_p->nameProduct ?></a>
+                                                <p>Giá: <span class="label-danger">
+                                                        <?php echo $_p->Price() ?>
+                                                    </span> | <span style="text-decoration: line-through; ">
+                                                        <?php echo $_p->oldPrice() ?>
+                                                    </span></p>
+                                                <p><label class="label-warning"><i class="fa fa-eye"></i>
+                                                        <?php echo $_p->Views ?>
+                                                    </label></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Ẩn Hiện:
+                                                    <?php echo $_p->isShow ?>
+                                                    <br>Danh Mục: <label class="label-success">
+                                                        <?php echo $_p->Category()->catName; ?>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </th>
+                                        <th style="width: 180px;">
+                                            <div class="btn-group " style="white-space: nowrap">
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="/mproduct/copyproduct/<?php echo $_p->ID ?>">Copy</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="/mproduct/editproduct/<?php echo $_p->ID ?>">Sửa</a>
+                                                <a onclick="return(confirm('Xóa sản phẩm này?'))" class="btn btn-sm btn-danger"
+                                                    href="/mproduct/deleteproduct/<?php echo $_p->ID ?>">Xóa</a>
+                                            </div>
+                                        </th>
+                                    </tr>
+
+                                    <?php
+                                }
+                            }
+
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Stt</th>
+                                <th>Hinh</th>
+                                <th>Tên Sản Phẩm</th>
+
+                                <th style="width: 50px;">Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+            <?php
+            echo Common::PhanTrangData($data["params"], "/mproduct/index/");
+            ?>
+        </section>
+
+    </div>
+
+</div>

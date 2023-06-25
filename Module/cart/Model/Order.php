@@ -7,7 +7,8 @@ namespace Module\cart\Model;
  *
  * @author MSI
  */
-class Order extends \Model\Database {
+class Order extends \Model\Database
+{
 
     //put your code here
 
@@ -27,7 +28,8 @@ class Order extends \Model\Database {
     const DangXuLy = 3;
     const MoiDat = 4;
 
-    function __construct($order = null) {
+    function __construct($order = null)
+    {
         parent::__construct();
         if ($order) {
             if (!is_array($order)) {
@@ -46,7 +48,8 @@ class Order extends \Model\Database {
         }
     }
 
-    function NgayDat() {
+    function NgayDat()
+    {
         $nam = substr($this->CodeOrder, 3, 4);
         $thang = substr($this->CodeOrder, 7, 2);
         $ngay = substr($this->CodeOrder, 9, 2);
@@ -54,28 +57,34 @@ class Order extends \Model\Database {
         return $time;
     }
 
-    function Status() {
+    function Status()
+    {
         $a = $this->listStatus();
         return $a[$this->Status];
     }
 
-    function createOrder($Order) {
+    function createOrder($Order)
+    {
         $this->insert(table_prefix . "order", $Order);
     }
 
-    function updateOrder($Order) {
+    function updateOrder($Order)
+    {
         return $this->update(table_prefix . "order", $Order, "`CodeOrder` = '{$Order["CodeOrder"]}'");
     }
 
-    function createOrderDetail($OrderDetail) {
+    function createOrderDetail($OrderDetail)
+    {
         return $this->insert(table_prefix . "orderdetail", $OrderDetail);
     }
 
-    function orders() {
+    function orders()
+    {
         return $this->select(table_prefix . "order", [], '1');
     }
 
-    function ordersPt($page = 1, $number = 20, &$sun) {
+    function ordersPt($page = 1, $number = 20, &$sun)
+    {
         $sun = 10;
         $page = intval($page);
         $page = max($page, 1);
@@ -86,11 +95,13 @@ class Order extends \Model\Database {
         return $this->select(table_prefix . "order", [], "1  ORDER BY `Id` DESC limit {$page},{$number}");
     }
 
-    function ordersByKey($key = "") {
+    function ordersByKey($key = "")
+    {
         return $this->select(table_prefix . "order", ["Id", 'Name', "TotalPrice", "CodeOrder", "Email", "Phone", "Status"], " `CodeOrder` like '%{$key}%' || `Email` like '%{$key}%' || `Phone` like '%{$key}%' || `Email` like '%{$key}%' ");
     }
 
-    function ordersStatusPt($page = 1, $number = 20, $status = 1, &$sun) {
+    function ordersStatusPt($page = 1, $number = 20, $status = 1, &$sun)
+    {
         $sun = 0;
         $page = intval($page);
         $page = max($page, 1);
@@ -101,19 +112,23 @@ class Order extends \Model\Database {
         return $this->select(table_prefix . "order", [], " `Status` = '{$status}'  ORDER BY `Id` DESC limit {$page},{$number}");
     }
 
-    function ordersPt1() {
+    function ordersPt1()
+    {
         return $this->select(table_prefix . "order", [], '1');
     }
 
-    function orderbyid($id) {
+    function orderbyid($id)
+    {
         return $this->select(table_prefix . "order", [], "`CodeOrder` = '{$id}'");
     }
 
-    function orderDetailbyid($id) {
+    function orderDetailbyid($id)
+    {
         return $this->select(table_prefix . "orderdetail", [], "`CodeOrder` = '{$id}'");
     }
 
-    function listStatus() {
+    function listStatus()
+    {
         $DSStatus = [
             self::Huy => "Hủy"
             , self::ThatBai => "Thất bại"
@@ -124,12 +139,14 @@ class Order extends \Model\Database {
         return $DSStatus;
     }
 
-    function getStatus($id) {
+    function getStatus($id)
+    {
         $DSStatus = $this->listStatus();
         return $DSStatus[$id];
     }
 
-    public function ProductsByDonHang() {
+    public function ProductsByDonHang()
+    {
         return $this->select(table_prefix . "orderdetail", [], "`CodeOrder` = '{$this->CodeOrder}'");
     }
 

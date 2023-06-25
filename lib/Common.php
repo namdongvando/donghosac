@@ -13,18 +13,21 @@ namespace lib;
  *
  * @author MSI
  */
-class Common {
+class Common
+{
 
     //put your code here
 
     const DateVN = "d-m-Y H:i:s";
     const DateDB = "Y-m-d H:i:s";
 
-    public static function ToUrl($url) {
+    public static function ToUrl($url)
+    {
         header("Location: " . $url);
     }
 
-    public static function PhanTrang($TongTrang, $TrangHienTai, $DuongDan) {
+    public static function PhanTrang($TongTrang, $TrangHienTai, $DuongDan)
+    {
         $PhanTrang = ' <ul class="pagination">';
 
         $tu = $TrangHienTai - 4;
@@ -61,7 +64,21 @@ class Common {
         return $PhanTrang;
     }
 
-    static function bodautv($str) {
+    public static function PhanTrangData($params, $link)
+    {
+        $PagesIndex = $params["PagesIndex"];
+        unset($params["PagesIndex"]);
+        // $params["PagesIndex"] = "[i]";
+        $DuongDan =  http_build_query($params);
+        $DuongDan .= "&PagesIndex=[i]";
+        $DuongDan = "{$link}?" . $DuongDan;
+        $TongTrang = $params['TotalPages'];
+
+        return  self::PhanTrang($TongTrang, $PagesIndex, $DuongDan);
+    }
+
+    static function bodautv($str)
+    {
         if (!$str)
             return false;
 
@@ -96,24 +113,27 @@ class Common {
         return $str;
     }
 
-    public static function MoneyFomat($a) {
+    public static function MoneyFomat($a)
+    {
         if ($a > 0)
             return number_format($a, 0, '.', ',') . " đ";
         return "Liên Hệ";
     }
 
-    public static function NumberFomat($a) {
+    public static function NumberFomat($a)
+    {
         return number_format($a, 0, '.', ',');
     }
 
-    public static function DateFomat($param0) {
+    public static function DateFomat($param0)
+    {
         return date(self::DateVN, strtotime($param0));
     }
 
-    public static function DateFomatDB($param0 = null) {
+    public static function DateFomatDB($param0 = null)
+    {
         if ($param0 == null)
             return date(self::DateDB, time());
         return date(self::DateDB, strtotime($param0));
     }
-
 }

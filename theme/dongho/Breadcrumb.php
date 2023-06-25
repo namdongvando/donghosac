@@ -2,29 +2,30 @@
 
 namespace theme\dongho;
 
-class Breadcrumb extends \Model\Breadcrumb {
+class Breadcrumb extends \Model\Breadcrumb
+{
 
-    function ToHtml() {
+    function ToHtml()
+    {
         $a = self::$List;
         ob_start();
-        ?>
-        <div class="breadcrumb">
+?>
+        <div class="breadcrumb" style="background: url('__bg_breadcrumb___');">
             <div class="container flex breadcrumb-wrapper">
                 <h1 class="page-title"><?php echo self::$Title; ?></h1>
                 <ul class="pathway flex">
                     <li><a href="/">Trang Chủ</a></li>
                     <?php
                     foreach ($a as $value) {
-                        ?>
+                    ?>
                         <li><a href="<?php echo $value["link"] ?>"><?php echo $value["title"] ?></a></li>
-                        <?php
+                    <?php
                     }
                     ?>
                 </ul>
             </div>
         </div>
-        <?php
+<?php
         return ob_get_clean();
     }
-
 }

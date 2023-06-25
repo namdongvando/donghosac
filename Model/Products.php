@@ -7,6 +7,9 @@
 
 namespace Model;
 
+/**
+ * Summary of Products
+ */
 class Products extends \Model\Database
 {
 
@@ -20,6 +23,9 @@ class Products extends \Model\Database
     public $Username;
     public $catID;
     public $nameProduct;
+    public $Title;
+    public $Description;
+    public $Keyword;
     public $Alias;
     public $Price;
     public $oldPrice;
@@ -45,11 +51,14 @@ class Products extends \Model\Database
             $this->Username = $product["Username"];
             $this->catID = $product["catID"];
             $this->nameProduct = $product["nameProduct"];
+            $this->Title =  $product["Title"] ?? null;
+            $this->Description =  $product["Description"] ?? null;
+            $this->Keyword =  $product["Keyword"] ?? null;
             $this->Alias = $product["Alias"];
             $this->Price = $product["Price"];
             $this->oldPrice = $product["oldPrice"];
-            $this->Summary = isset($product["Summary"]) ? $product["Summary"] : "";
-            $this->Content = isset($product["Content"]) ? $product["Content"] : "";
+            $this->Summary = isset($product["Summary"]) ? htmlspecialchars_decode($product["Summary"])  : "";
+            $this->Content = isset($product["Content"]) ? htmlspecialchars_decode($product["Content"]) : "";
             $this->UrlHinh = $product["UrlHinh"];
             $this->DateCreate = $product["DateCreate"];
             $this->Number = $product["Number"];
@@ -83,6 +92,10 @@ class Products extends \Model\Database
         return "Liên Hệ";
     }
 
+    /**
+     * Summary of IsShowList
+     * @return array<string>
+     */
     public static function IsShowList()
     {
         return [
@@ -93,6 +106,10 @@ class Products extends \Model\Database
         ];
     }
 
+    /**
+     * Summary of UrlHinh
+     * @return mixed|string
+     */
     function UrlHinh()
     {
 
@@ -201,7 +218,7 @@ class Products extends \Model\Database
     {
         $a = $this->oldPrice;
         if ($a > 0)
-            return number_format($a, 0, '.', ',') . "Đ";
+            return number_format($a, 0, '.', ',') . "<sup>đ</sup>";
         return 0;
     }
 
@@ -239,9 +256,9 @@ class Products extends \Model\Database
         if ($this->Number == 0) {
             return;
         }
-        ?>
+?>
         <a href="<?php echo $this->linkGioHang(); ?>">Giỏ Hàng</a>
-        <?php
+<?php
     }
 
     public function Obj2Api()
@@ -317,5 +334,5 @@ class Products extends \Model\Database
         return new Category($a);
     }
 
-//put your code here
+    //put your code here
 }

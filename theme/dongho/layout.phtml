@@ -7,26 +7,29 @@ $functionLayout = new theme\dongho\functionLayout();
 ?>
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
+
+<head>
+    <?php
+    $functionLayout->head();
+    ?>
+</head>
+
+<body class="site home">
+    <div id="body-wrapper">
         <?php
-        $functionLayout->head();
-        ?>
-    </head>
-    <body class="site home">
-        <div id="body-wrapper">
-            <?php
-            $functionLayout->header()
+        $functionLayout->header()
             ?>
-            <div class="body">
-                <?php
-                include_once $Content;
-                ?>
-            </div>
+        <div class="body">
             <?php
-            $functionLayout->footer();
+            include_once $Content;
             ?>
         </div>
-    </body>
+        <?php
+        $functionLayout->footer();
+        ?>
+    </div>
+</body>
+
 </html>
 <?php
 $functionLayout->DeCodeHTML();

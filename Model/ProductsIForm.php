@@ -2,7 +2,8 @@
 
 namespace Model;
 
-interface ProductsIForm {
+interface ProductsIForm
+{
 
     public static function ID($val = null);
 
@@ -13,6 +14,9 @@ interface ProductsIForm {
     public static function nameProduct($val = null);
 
     public static function Alias($val = null);
+    public static function Title($val = null);
+    public static function Description($val = null);
+    public static function Keyword($val = null);
 
     public static function Price($val = null);
 

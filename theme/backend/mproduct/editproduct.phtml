@@ -1,21 +1,13 @@
 <?php
-
 $_product = $data["p"];
-
 $Product = new \Model\Products($_product);
 
-
-
 $_product["CatName"] = $Product->CatName($_product["catID"]);
-
 ?>
-
 <div class="box box-solid " ng-controller="editproductController">
-
     <div class="box-header ">
         <div class="tool-box">
-            <a class="btn btn-primary" href="/mproduct/detailproduct/<?php echo $_product["ID"] ?>"><i
-                    class="fa fa-angle-left"></i></a>
+            <a class="btn btn-primary" href="/mproduct/index/"><i class="fa fa-angle-left"></i></a>
         </div>
     </div>
     <div class="box-body">
@@ -27,113 +19,67 @@ $_product["CatName"] = $Product->CatName($_product["catID"]);
                     \Model\ProductsForm::ID($_product["ID"])->render();
                     ?>
                 </div>
-                <div class="form-group hidden">
-
-                    <label>ID</label>
-
-                    <input type="text" value="<?php echo $_product["ID"] ?>" class="form-control" name="ID">
-
-                </div>
-
-                <div class="row">
-
+                <div class="row"> 
                     <div class="col-md-6">
-
                         <?php
-
                         \Model\ProductsForm::Price(floatval($_product["Price"]))->renderHTML();
-
                         ?>
-
                     </div>
-
                     <div class="col-md-6">
-
                         <?php
-
                         \Model\ProductsForm::oldPrice(floatval($_product["oldPrice"]))->renderHTML();
-
                         ?>
-
                     </div>
-
                 </div>
-
-
 
                 <div role="tabpanel">
-
                     <div class="tab-content">
-
                         <div role="tabpanel" class="tab-pane active" id="home">
                             <?php
-                            \Model\ProductsForm::Summary($_product["Summary"])->renderHTML();
-                            \Model\ProductsForm::Content($_product["Content"])->renderHTML();
+                            \Model\ProductsForm::Summary(htmlspecialchars_decode($_product["Summary"]))->renderHTML();
+                            \Model\ProductsForm::Content(htmlspecialchars_decode($_product["Content"]))->renderHTML();
                             \Model\ProductsForm::Note($_product["Note"])->renderHTML();
                             ?>
                         </div>
-                        
 
                     </div>
-
                 </div>
-
             </div>
-
             <div class="col-md-3">
-
                 <div class="form-group">
-
                     <label></label>
-
-                    <button name="LuuSanPham" class="btn btn-block btn-primary" type="submit">Lưu</button>
-
+                    <button name="LuuSanPham" class="btn  btn-primary" type="submit">Lưu</button>
                 </div>
-
                 <?php
                 \Model\ProductsForm::catID($_product["catID"])->renderHTML();
                 ?>
                 <div class="form-group">
                     <div>
                         Hình Ảnh
-                        <label
-                            style="border: 1px solid #000;background-color: rgba(0, 0, 0, 0.34);color: #fff;text-align: center;position: relative;height: 105px;display: block;z-index: 2">
+                        <label style="border: 1px solid #000;background-color: rgba(0, 0, 0, 0.34);color: #fff;text-align: center;position: relative;height: 105px;display: block;z-index: 2">
                             Chọn Hình
-                            <input style="display: none" onclick="BrowseServer('Images:/sanpham/', 'UrlHinh')"
-                                type="button" name="btnChonFile" id="btnChonFile" value="Chọn File" />
+                            <input style="display: none" onclick="BrowseServer('Images:/sanpham/', 'UrlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn File" />
                             <div class="HinhChon" style="position: absolute;top: 0px;z-index: 1">
-                                <img id="HinhQuanCao" src="<?php echo $Product->UrlHinh() ?>"
-                                    style="height: 100px;max-width: 200px">
+                                <img id="HinhQuanCao" src="<?php echo $Product->UrlHinh() ?>" style="height: 100px;max-width: 200px">
                             </div>
                         </label>
                         <div style="clear: both"></div>
                         <label>Hình Sản Phẩm</label>
-                        <input value="<?php echo $Product->UrlHinh() ?>" type="text"
-                            value="<?php echo $Product->UrlHinh(); ?>" class="form-control" id="UrlHinh" name="SanPham[UrlHinh]">
-
+                        <input value="<?php echo $Product->UrlHinh() ?>" type="text" value="<?php echo $Product->UrlHinh(); ?>" class="form-control" id="UrlHinh" name="SanPham[UrlHinh]">
                     </div>
-
                 </div>
-
                 <?php
-
+                \Model\ProductsForm::Title($_product["Title"])->renderHTML();
+                \Model\ProductsForm::Keyword($_product["Keyword"])->renderHTML();
+                \Model\ProductsForm::Description($_product["Description"])->renderHTML();
                 \Model\ProductsForm::Number($_product["Number"])->renderHTML();
-
                 \Model\ProductsForm::BuyTimes($_product["BuyTimes"])->renderHTML();
-
                 \Model\ProductsForm::Views($_product["Views"])->renderHTML();
-
                 \Model\ProductsForm::isShow($_product["isShow"])->renderHTML();
                 \Model\ProductsForm::lang($_product["lang"])->renderHTML();
-
                 ?>
-
             </div>
 
-
-
         </form>
-
     </div>
-
 </div>

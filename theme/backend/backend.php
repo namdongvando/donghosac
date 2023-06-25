@@ -7,7 +7,7 @@ class backend extends \Model\Database
 
     function head()
     {
-?>
+        ?>
         <link rel="shortcut icon" href="/public/no-image.jpg" />
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="/public/admin/bootstrap/css/bootstrap.min.css">
@@ -35,12 +35,12 @@ class backend extends \Model\Database
         <link href="/public/admin/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="/public/App.css" rel="stylesheet" type="text/css" />
         <script src="/public/ckfinder/ckfinder.js" type="text/javascript"></script>
-    <?php
+        <?php
     }
 
     function Menu()
     {
-    ?>
+        ?>
         <header class="main-header ">
             <!-- Logo -->
             <a href="/backend/" class="logo">
@@ -67,7 +67,8 @@ class backend extends \Model\Database
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/public/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/public/admin/dist/img/user2-160x160.jpg" class="img-circle"
+                                                        alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -79,7 +80,8 @@ class backend extends \Model\Database
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/public/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/public/admin/dist/img/user3-128x128.jpg" class="img-circle"
+                                                        alt="User Image">
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -91,7 +93,8 @@ class backend extends \Model\Database
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/public/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/public/admin/dist/img/user4-128x128.jpg" class="img-circle"
+                                                        alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -103,7 +106,8 @@ class backend extends \Model\Database
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/public/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/public/admin/dist/img/user3-128x128.jpg" class="img-circle"
+                                                        alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -115,7 +119,8 @@ class backend extends \Model\Database
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/public/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/public/admin/dist/img/user4-128x128.jpg" class="img-circle"
+                                                        alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -147,7 +152,8 @@ class backend extends \Model\Database
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may
+                                                not fit into the page and may cause design problems
                                             </a>
                                         </li>
                                         <li>
@@ -188,7 +194,9 @@ class backend extends \Model\Database
                                                     <small class="pull-right">20%</small>
                                                 </h3>
                                                 <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                        role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                        aria-valuemax="100">
                                                         <span class="sr-only">20% Complete</span>
                                                     </div>
                                                 </div>
@@ -201,7 +209,9 @@ class backend extends \Model\Database
                                                     <small class="pull-right">40%</small>
                                                 </h3>
                                                 <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                        role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                        aria-valuemax="100">
                                                         <span class="sr-only">40% Complete</span>
                                                     </div>
                                                 </div>
@@ -214,7 +224,9 @@ class backend extends \Model\Database
                                                     <small class="pull-right">60%</small>
                                                 </h3>
                                                 <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                        role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                        aria-valuemax="100">
                                                         <span class="sr-only">60% Complete</span>
                                                     </div>
                                                 </div>
@@ -227,7 +239,9 @@ class backend extends \Model\Database
                                                     <small class="pull-right">80%</small>
                                                 </h3>
                                                 <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%"
+                                                        role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                        aria-valuemax="100">
                                                         <span class="sr-only">80% Complete</span>
                                                     </div>
                                                 </div>
@@ -272,7 +286,8 @@ class backend extends \Model\Database
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar" ng-controller="bklayoutController" ng-init='bklayoutInit(<?php echo $this->_encode($_SESSION[QuanTri]); ?>)'>
+        <aside class="main-sidebar" ng-controller="bklayoutController"
+            ng-init='bklayoutInit(<?php echo $this->_encode($_SESSION[QuanTri] ?? "{}"); ?>)'>
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar ">
                 <!-- Sidebar user panel -->
@@ -290,7 +305,8 @@ class backend extends \Model\Database
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control" placeholder="Tìm Kiếm...">
                         <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                                    class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </form>
@@ -380,19 +396,19 @@ class backend extends \Model\Database
                             <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
-                    
+
 
                 </ul>
-                <div class="clearfix"></div> 
+                <div class="clearfix"></div>
             </section>
             <!-- /.sidebar -->
         </aside>
-    <?php
+        <?php
     }
 
     function js()
     {
-    ?>
+        ?>
         <!-- jQuery 2.1.4 -->
         <script src="/public/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -473,7 +489,7 @@ class backend extends \Model\Database
             }
         </script>
 
-<?php
+        <?php
     }
 
     function Breadcrumb()
